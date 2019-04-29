@@ -19,7 +19,7 @@ The app should have a public website without a namespace.
 
 The app should have a deposit panel in the namespace `/deposit`.
 
-- Users of role deposit should have access to this panel
+- Users of role `deposit` should have access to this panel
 - Deposits should have a form to search for a tracking number
 - Deposits should have a button to mark a shipment as stored in their deposit
 - After a deposit marked a shipment as stored should be saved in the shipment history it was on the deposit city and country and the date.
@@ -31,9 +31,9 @@ The app should have an administration panel in the namespace `/admin`.
 - Admins can create new tracking numbers
 - Admins can create users with read-only access to the admin sales section. This section includes
   - The top 5 countries with the most origin and destination shipments
-  - Vendors ranked by number of packages sent
-  - Vendors ranked by total freight value of all their shipments if they have shipped more than 1000kg
-  - Number of packages with delivered dates past due their estimated delivery date this week, month, quarter
+  - Senders ranked by number of packages sent
+  - Senders ranked by total freight value of all their shipments if they have shipped more than 1000kg
+  - (Optional) Number of packages with delivered dates past due their estimated delivery date this week, month, quarter
 
 ## Public API
 
@@ -45,8 +45,12 @@ The app should expose an API in `/api` to recreate the public website.
 
 ## Resources
 
-- Shipment (tracking_id, origin_address, destination_address, weight, reception_date, estimated_delivery_date, delivered_date)
-- User (username, email, password, city, country, address, role)
+- User (id, username, email, password, city, country, address, role)
+- Sender (id, store_name, order_id, email)
+- Shipment (id, tracking_id, origin_address, destination_address, weight, reception_date, estimated_delivery_date, delivered_date, freight_value, recipient_id, sender_id)
+- ShipmentLocation (id, city, country, reception_date, shipment_id)
+
+![](https://d2ddoduugvun08.cloudfront.net/items/2J1j2B360l2a0t2h3P28/Image%202019-04-29%20at%2010.15.02%20AM.png?X-CloudApp-Visitor-Id=3093938&v=0736014f)
 
 ## Acceptance Criteria
 
