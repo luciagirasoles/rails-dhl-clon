@@ -15,6 +15,10 @@ The app should have a public website without a namespace.
   - Only the last 5 delivered packages
 - After a shipment is marked as completed email the customers registered in the shipment details.
 
+_Private fields to avoid showing in the shipment detail:_
+- Sender: order_id, freight_value, email
+- Recipient related information
+
 ## Deposit panel
 
 The app should have a deposit panel in the namespace `/deposit`.
