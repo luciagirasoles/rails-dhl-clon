@@ -25,16 +25,4 @@ class User < ApplicationRecord
     role == expected_role
   end  
 
-  def regular?
-    self.role == "regular"
-  end
-
-  def deposit?
-    self.role == "deposit"
-  end
-
-  def admin?
-    self.role == "admin"
-  end
-
 end
