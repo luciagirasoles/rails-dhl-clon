@@ -22,6 +22,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def google_oauth2
+    @user = User.from_omniauth(request.env["omniauth.auth"])
+    if @user
+      sign_in_and_redirect @user
+      set_flash_message(:notice, :success, kind: "Google")
+    else
+      session["devise.google_oauth2_data"] = request.env["omniauth.auth"]
+      redirect_to new_user_registration_url
+    end
+  end
+
   def failure
     redirect_to root_path
   end
