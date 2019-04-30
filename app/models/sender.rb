@@ -1,2 +1,0 @@
-class Sender < ApplicationRecord
-end

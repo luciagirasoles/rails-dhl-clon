@@ -1,2 +1,0 @@
-class ShipmentLocation < ApplicationRecord
-end
