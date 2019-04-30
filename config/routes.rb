@@ -25,12 +25,12 @@ Rails.application.routes.draw do
     resources :users, only: :create
   end
 
-  namespace :api,  only: [:index, :show, :update] do
-    resources :shipment do
-      get 'search', to: 'shipment#search' 
-    end
+  namespace :api,  only:[:index, :show, :update] do
+    resources 'shipment'
+      get 'index' , to: 'shipment#index'
+      get 'search', to: 'shipment#search'
   end
-
+  
   resources :error , only: [:index] do
     get "/error" => :error
   end
