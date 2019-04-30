@@ -1,9 +1,6 @@
 require "faker"
 
-<<<<<<< HEAD
 # Create Users
-=======
->>>>>>> be9c5bda1d7420e5120623d6142534524ebf0c82
 
 10.times do
   User.create(
@@ -15,7 +12,6 @@ require "faker"
     address: Faker::Address.street_address,
     role: 'regular'
   )
-<<<<<<< HEAD
 
 # Creating Sender
 
@@ -52,6 +48,4 @@ end
     shipment_id: Shipment.all.reduce([]){ |array, val| array << val.id }.sample,
   }])
 
-=======
->>>>>>> be9c5bda1d7420e5120623d6142534524ebf0c82
 end
