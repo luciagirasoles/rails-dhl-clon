@@ -20,4 +20,9 @@ class User < ApplicationRecord
     provider = Provider.find_or_create_by(name: auth.provider, uid: auth.uid, user_id: user.id)
     user
   end
+
+  def role?(expected_role)
+    role == expected_role
+  end  
+
 end
