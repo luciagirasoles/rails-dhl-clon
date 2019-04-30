@@ -32,6 +32,7 @@ end
     destination_address: Faker::Address.full_address, 
     weight: Faker::Number.between(1, 10),
     reception_date: Faker::Date.forward(60),
+    delivered_date: Faker::Date.forward(60),
     estimated_delivery_date: Faker::Date.forward(60),
     freight_value: Faker::Number.between(20 ,100),
     user_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
