@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   namespace :api,  only: [:index, :show, :update] do
     resources :shipment do
-      get 'search', on: :collection
+      get 'search', to: 'shipment#search' 
     end
   end
 
