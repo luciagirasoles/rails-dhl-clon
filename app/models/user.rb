@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :shipments, dependent: :destroy
   devise :omniauthable, omniauth_providers: %i[facebook github]
+  has_many :shipments, dependent: :destroy
 
   def self.from_omniauth(auth)
     user = where(email: auth.info.email).first_or_create do |user|
