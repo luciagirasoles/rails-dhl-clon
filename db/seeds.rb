@@ -37,8 +37,8 @@ end
     delivered_date: Faker::Date.forward(60),
     estimated_delivery_date: Faker::Date.forward(60),
     freight_value: Faker::Number.between(20 ,100),
-    recipient_id: 1,
-    sender_id: 1
+    recipient_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
+    sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
   }])
   end
 # Create Shipment Location
