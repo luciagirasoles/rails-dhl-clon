@@ -25,10 +25,10 @@ Rails.application.routes.draw do
     resources :users, only: :create
   end
 
-  namespace :api do
-    resources :shipments
-    resources :users
-    resources :senders
+  namespace :api,  only: [:index, :show, :update] do
+    resources :shipment do
+      get 'search', on: :collection
+    end
   end
 
   resources :error , only: [:index] do
