@@ -8,11 +8,7 @@ class User < ApplicationRecord
   
   validates :username, presence: true
   validates :username, uniqueness: true
-  # validates :country, presence: true
-  # validates :city, presence: true
-  # validates :address, presence: :true
-
-
+  # validates :country, :city, :address, :reception_date, presence: true
 
 
   def self.from_omniauth(auth)
