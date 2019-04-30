@@ -1,0 +1,20 @@
+<nav>
+  <div class="container navbar">
+    <div>
+       <%= link_to "DHL Home", current_user.nil? || !current_user.admin? ? root_path : admin_root_path %>
+    </div>
+    <ul>
+      <%= link_to "Tracking number", current_user.nil? || !current_user.admin? ? songs_path : admin_songs_path %>
+      <%= link_to "Artists", current_user.nil? || !current_user.admin? ? artists_path : admin_artists_path %>
+      <%= link_to "Albums", current_user.nil? || !current_user.admin? ? albums_path : admin_albums_path %>
+
+      <% if current_user %>
+        <a href="#">Hi <%= current_user.email.split("@").first %></a>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Sign in', new_user_session_path %>
+        <%= link_to 'Sign up', new_user_registration_path %>
+      <% end %>
+    </ul>
+  </div>
+</nav>
