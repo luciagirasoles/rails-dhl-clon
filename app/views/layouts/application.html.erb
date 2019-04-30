@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsDhlClon</title>
+    <title>Grooveshark</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div>
+      <% if current_user %>
+        Has iniciado sesión como <strong><%= current_user.email %></strong>!
+        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Iniciar sesión', new_user_session_path %>
+      <% end %>
+    </div>
+    <div>
+      <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
+      <% elsif flash[:alert] %>
+        <p><%= flash[:alert] %></p>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
