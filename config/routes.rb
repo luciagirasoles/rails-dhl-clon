@@ -29,4 +29,8 @@ Rails.application.routes.draw do
     resources :users
     resources :senders
   end
+<<<<<<< HEAD
+=======
+
+>>>>>>> 422a814acf1d223939c6fa702bb8a30259eecda2
 end
