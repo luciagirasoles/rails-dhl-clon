@@ -70,3 +70,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'pundit'
+gem 'omniauth-google-oauth2'
