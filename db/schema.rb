@@ -70,4 +70,5 @@ ActiveRecord::Schema.define(version: 2019_04_30_011520) do
   add_foreign_key "shipment_locations", "shipments"
   add_foreign_key "shipments", "senders"
   add_foreign_key "shipments", "users", column: "recipient_id"
+
 end
