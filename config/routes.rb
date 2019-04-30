@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :shipments, only: [:show] do
     get "/search" => :search
-    post "/search" => :search
+    # post "/search" => :search
   end
   resources :users, only: :show
   resources :senders, only: :show
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :deposit do
     resources :shipments, only: [:show] do
       get "/search" => :search
-      post "/search" => :search
+      # post "/search" => :search
       post "/marked" => :stored
     end
   end
@@ -31,4 +31,7 @@ Rails.application.routes.draw do
     resources :senders
   end
 
+  resources :error , only: [:index] do
+    get "/error" => :error
+  end
 end
