@@ -12,6 +12,26 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+    <div class="field">
+    <%= f.label :username %><br />
+    <%= f.email_field :username %>
+  </div>
+
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.email_field :country %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.email_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.email_field :address %>
+  </div>
+
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
