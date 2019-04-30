@@ -1,7 +1,14 @@
 <div>
-Welcome
+<h1>Welcome</h1>
 </div>
 
-<div>
-  <h3>Please access for further options</h3>
-</div>
+<% if current_user %>
+  <%= form_tag(search_path, {:method => "get"}) do %>
+    <%= text_field_tag 'tracking_id' %>
+    <%= submit_tag 'Search' %>
+  <% end %>
+<% else %>
+  <div>
+    <h3>Please access for further options</h3>
+  </div>
+<% end %>
