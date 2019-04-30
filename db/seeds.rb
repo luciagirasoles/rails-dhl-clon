@@ -1,7 +1,7 @@
 require "faker"
 
 # Create Users
-
+  con = 1
 10.times do
   User.create(
     email: Faker::Internet.email,
@@ -12,6 +12,7 @@ require "faker"
     address: Faker::Address.street_address,
     role: 'regular'
   )
+  end
 
 # Creating Sender
 
@@ -29,15 +30,16 @@ end
 5.times do
   Shipment.create ([{
     tracking_id: Faker::Alphanumeric.alphanumeric(10),
-    origin_adress: Faker::Address.full_address, 
+    origin_address: Faker::Address.full_address, 
     destination_address: Faker::Address.full_address, 
     weight: Faker::Number.between(1, 10),
     reception_date: Faker::Date.forward(60),
     estimated_delivery_date: Faker::Date.forward(60),
     freight_value: Faker::Number.between(20 ,100),
-    user_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
+    recipient_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
     sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
   }])
+  end
 # Create Shipment Location
 
 5.times do 
@@ -49,3 +51,4 @@ end
   }])
 
 end
+p "Correctly added"
