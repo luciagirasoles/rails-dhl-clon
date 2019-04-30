@@ -1,7 +1,6 @@
 require "faker"
 
 # Create Users
-  con = 1
 10.times do
   User.create(
     email: Faker::Internet.email,
@@ -12,7 +11,6 @@ require "faker"
     address: Faker::Address.street_address,
     role: 'regular'
   )
-  end
 
 # Creating Sender
 
@@ -30,16 +28,26 @@ end
 5.times do
   Shipment.create ([{
     tracking_id: Faker::Alphanumeric.alphanumeric(10),
+<<<<<<< Updated upstream
     origin_address: Faker::Address.full_address, 
+=======
+    origin_adress: Faker::Address.full_address, 
+>>>>>>> Stashed changes
     destination_address: Faker::Address.full_address, 
     weight: Faker::Number.between(1, 10),
     reception_date: Faker::Date.forward(60),
     estimated_delivery_date: Faker::Date.forward(60),
     freight_value: Faker::Number.between(20 ,100),
+<<<<<<< Updated upstream
     recipient_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
     sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
   }])
   end
+=======
+    user_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
+    sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
+  }])
+>>>>>>> Stashed changes
 # Create Shipment Location
 
 5.times do 
@@ -50,5 +58,9 @@ end
     shipment_id: Shipment.all.reduce([]){ |array, val| array << val.id }.sample,
   }])
 
+<<<<<<< Updated upstream
 end
 p "Correctly added"
+=======
+end
+>>>>>>> Stashed changes
