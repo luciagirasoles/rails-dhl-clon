@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api,  only:[:index, :show, :update] do
-    resources 'shipment'
+    resources :shipment
       get 'index' , to: 'shipment#index'
       get 'search', to: 'shipment#search'
   end
