@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root "home#index"
 
-  resources :shipments, only: [:show]
+  resources :shipments, only: :show
   get "/search", to: 'shipment#search'
     # post "/search" => :search
   resources :users, only: :show

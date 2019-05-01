@@ -11,6 +11,7 @@ require "faker"
     address: Faker::Address.street_address,
     role: 'regular'
   )
+end
 
 # Creating Sender
 
@@ -18,7 +19,7 @@ require "faker"
   Sender.create ([{
   store_name: Faker::Commerce.department,
   email: Faker::Internet.email,
-  order_id: con 
+  order_id: con
   }])
   con += 1
 end
@@ -38,7 +39,8 @@ end
     user_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
     sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
   }])
-# Create Shipment Location
+end
+  # Create Shipment Location
 
 5.times do 
   ShipmentLocation.create ([{
