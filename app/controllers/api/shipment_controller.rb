@@ -1,8 +1,12 @@
 module Api
-  class ShipmentController < ApplicationController
+  class ShipmentController < ApiController
     def index
       @shipment = Shipment.all
       render json: @shipment, status: :ok
+    end
+
+    def show
+      render json: Shipment.find(params[:id])
     end
 
     def search
