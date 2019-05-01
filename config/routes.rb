@@ -11,11 +11,13 @@ Rails.application.routes.draw do
   resources :senders, only: :show
 
   namespace :deposit do
-    resources :shipments, only: [:show] do
-      get "/search" => :search
-      # post "/search" => :search
-      post "/marked" => :stored
-    end
+    get 'index', to: 'shipment#search'
+      resources :shipments, only: [:show] do
+        
+        get 'search', to: 'shipment#search'
+        # post "/search" => :search
+        post "/marked" => :stored
+      end
   end
 
   namespace :admin do

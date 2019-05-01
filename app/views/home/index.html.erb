@@ -1,5 +1,6 @@
-hi
-<%= form_tag("/api/search", {:method => 'get'}) do %>
+<h1>RAILS DHL CLON</h1>
+
+<%= form_tag("deposit/index", {:method => 'get'}) do %>
     <%= text_field_tag(:search, params[:search]) %>
     <%= submit_tag('Search', :name => nil) %>
 <% end %>
