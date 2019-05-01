@@ -1,0 +1,154 @@
+// Place all the styles related to the Shipment controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  margin: 0;
+  font-family: monospace, Helvetica, sans-serif;
+  letter-spacing: 0.75px;
+}
+
+a {
+  color: #067df7;
+  text-decoration: none;
+}
+
+a[data-method="delete"]:hover {
+  color: tomato;
+}
+
+nav {
+  background-color: #24292e;
+  a {
+    color: #fff;
+    padding-bottom: 0.25em;
+    text-decoration: none;
+    transition: all 0.5s;
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      margin-left: -15px;
+      width: 30px;
+      height: 2px;
+      background: #fff;
+      transition: transform 0.3s;
+      transform: scale3d(0, 1, 1);
+    }
+    &:hover:before {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+}
+
+.navbar {
+  display: flex;
+  padding: 10px 30px;
+  align-items: center;
+  justify-content: space-between;
+  a {
+    margin-right: 5px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.pad {
+  @media screen and (max-width: 1200px) {
+    padding: 1em;
+  }
+}
+
+.actions {
+  margin: 1em 0;
+}
+
+.field {
+  margin-top: 1em;
+  label {
+    min-width: 120px;
+    display: inline-block;
+  }
+  input {
+    padding: 3px 7.5px;
+  }
+}
+
+.flash-notice {
+  background: #a9a9a9;
+  padding: 8px;
+  margin-right: -8px;
+}
+
+.small-text {
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+table td,
+table th {
+  border: 1px solid #dbdbdb;
+  border-width: 0 0 1px;
+  padding: 0.5em 0.75em;
+  vertical-align: center;
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  & > div {
+    max-width: calc(25% - 20px);
+    padding: 10px;
+  }
+  img {
+    margin-top: 10px;
+    max-width: 100%;
+  }
+}
+
+.icons {
+  color: #393f49;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  a {
+    color: inherit;
+  }
+  & > div {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    &.active {
+      color: #067df7;
+    }
+  }
+  svg {
+    margin-left: 10px;
+    box-sizing: content-box;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+  }
+  span {
+    display: inline-block;
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+}
+
+/* helpers */
+.text-center {
+  text-align: center;
+}
