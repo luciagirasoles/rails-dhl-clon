@@ -3,7 +3,7 @@ require "faker"
 con = 1
 
 # Create Users
-10.times do
+5.times do
   User.create(
     email: Faker::Internet.email,
     username: Faker::Internet.user_name,
@@ -12,6 +12,17 @@ con = 1
     city: Faker::Address.city,
     address: Faker::Address.street_address,
     role: 'regular'
+  )
+end
+5.times do
+  User.create(
+    email: Faker::Internet.email,
+    username: Faker::Internet.user_name,
+    password: '123456',
+    country: Faker::Address.country,
+    city: Faker::Address.city,
+    address: Faker::Address.street_address,
+    role: 'deposit'
   )
 end
 
