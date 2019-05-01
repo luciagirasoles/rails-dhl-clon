@@ -4,6 +4,6 @@ class AddFieldsToUsers < ActiveRecord::Migration[5.2]
     add_column :users, :city, :string
     add_column :users, :country, :string
     add_column :users, :address, :string
-    add_column :users, :role, :string
+    add_column :users, :role, :string, default: "regular"
   end
 end
