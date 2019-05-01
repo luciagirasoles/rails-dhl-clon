@@ -9,12 +9,8 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :senders, only: :show
 
-  namespace :deposit do
-    resources :shipments, only: [:show] do
-      get "/search" => :search
-      # post "/search" => :search
-      post "/marked" => :stored
-    end
+  namespace :deposit, only: [:index] do
+    get "/search", to: 'shipment#search'
   end
 
   namespace :admin do
