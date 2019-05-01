@@ -7,8 +7,9 @@ class ShipmentsController < ApplicationController
   end
 
   def search
-    if params[:search_tracking_id]
-      @shipment = Shipment.find_by(tracking_id: search_param[:search_tracking_id])
+    search_track = Shipment.search(params[:search_tracking_id]) 
+    if search_track
+      @shipment = search_track
       redirect_to shipment_path(@shipment)
     else
       redirect_to "/error", notice: "Track ID is not found. Please, try again"
