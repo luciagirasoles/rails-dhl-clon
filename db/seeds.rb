@@ -1,5 +1,7 @@
 require "faker"
 
+con = 1
+
 # Create Users
 10.times do
   User.create(
@@ -29,14 +31,14 @@ end
 5.times do
   Shipment.create ([{
     tracking_id: Faker::Alphanumeric.alphanumeric(10),
-    origin_adress: Faker::Address.full_address, 
+    origin_address: Faker::Address.full_address, 
     destination_address: Faker::Address.full_address, 
     weight: Faker::Number.between(1, 10),
     reception_date: Faker::Date.forward(60),
     delivered_date: Faker::Date.forward(60),
     estimated_delivery_date: Faker::Date.forward(60),
     freight_value: Faker::Number.between(20 ,100),
-    user_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
+    recipient_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
     sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
   }])
 end
