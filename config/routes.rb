@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   namespace :api,  only:[:index, :show, :update] do
     resources :shipment
       get 'index' , to: 'shipment#index'
-      get 'search', to: 'shipment#search'
+      get 'show', to: 'shipment#search'
   end
   
   resources :error , only: [:index] do
