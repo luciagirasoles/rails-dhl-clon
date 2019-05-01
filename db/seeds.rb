@@ -8,6 +8,7 @@ con = 1
     email: Faker::Internet.email,
     username: Faker::Internet.user_name,
     password: 'aaaaaa',
+    authentication_token: Devise.friendly_token[0, 30],
     country: Faker::Address.country,
     city: Faker::Address.city,
     address: Faker::Address.street_address,
