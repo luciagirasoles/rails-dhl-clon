@@ -4,10 +4,12 @@ class Deposit::ShipmentController < ApplicationController
     redirect_to "/deposit/index"
   end
 
-  if params[:search].present?
-    @shipment = Shipment.where(tracking_id: params[:tracking_number])
-  else
-    @shipment = Shipment.all
-  end
-
+  # def search
+  #   if params[:tracking_id].present?
+  #     @shipments = Shipment.where(name: params[:tracking_id])
+  #     redirect_to shipment_path(@shipment)
+  #   else
+  #     redirect_to "/error"
+  #   end
+  # end
 end
