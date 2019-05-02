@@ -16,6 +16,17 @@ class ApplicationController < ActionController::Base
     redirect_to(request.referrer || root_path)
   end
 
+  def after_sign_in_path_for(current_user)
+    if current_user.role == 'admin'
+      admin_shipment_index_path
+    elsif current_user.role == 'deposit'
+      deposit_shipment_path
+    else
+      #to be replaced
+      shipment_path
+    end
+  end
+  
   # def include_api
   #   if params[:controller].include?("api")
   #     acts_as_token_authentication_handler_for User

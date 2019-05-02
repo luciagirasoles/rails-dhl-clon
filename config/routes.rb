@@ -10,14 +10,12 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :senders, only: :show
 
-  namespace :deposit do
-    get 'index', to: 'shipment#search'
-      resources :shipments, only: [:show] do
-        
-        get 'search', to: 'shipment#search'
-        # post "/search" => :search
-        post "/marked" => :stored
-      end
+  namespace :deposit, only: [:index ] do
+    resources :shipment
+      get "/index", to: 'shipment#index'
+      get "/show/:tracking_id", to: "shipment#show"
+      get "/search", to: 'shipment#search'
+      post "/check_in", to: 'shipment#check_in'
   end
 
   namespace :admin do
@@ -29,8 +27,10 @@ Rails.application.routes.draw do
 
   namespace :api,  only:[:index, :show, :update] do
     resources :shipment
-      get 'index' , to: 'shipment#index'
-      get 'show', to: 'shipment#search'
+    get 'show' , to: 'shipment#show'
+    get 'index' , to: 'shipment#index'
+    get 'search', to: 'shipment#search'
+    post 'login', to: 'sessions#create'
   end
   
   resources :error , only: [:index] do
