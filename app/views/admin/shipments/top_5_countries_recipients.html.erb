@@ -1,7 +1,7 @@
 <h1>Top 5 Countries Recipients</h1>
 
 <ul>
-  <% @users.each do |user| %>
-    <li><%= user.country %> | Most shipments received: <% user.shipments.count('users.country') %> </li>
+  <% @shipments.each do |shipment| %>
+    <li><%= shipment.recipient.country %> | Most shipments received:</li>
   <% end %>
 </ul>
