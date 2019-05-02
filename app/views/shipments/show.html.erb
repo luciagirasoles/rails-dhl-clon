@@ -5,4 +5,19 @@
 <p>Reception date: <%= @shipment.reception_date %></p>
 <p>Estimated delivery date: <%= @shipment.estimated_delivery_date %></p>
 <p>Delivered date: <%= @shipment.delivered_date %></p>
-<p>Freight value: <%= @shipment.freight_value %></p>
+
+<% if current_user %>
+  <% if current_user.email == @shipment.recipient.email %>
+    <p>Freight value: <%= @shipment.freight_value %></p>
+    <p>Sender's order ID: <%= @shipment.sender.order_id %></p>
+    <p>Sender's email: <%= @shipment.sender.email %></p>
+    <p>Recipient Info:</p>
+    <ul>
+      <li>Username: <%= @shipment.recipient.username %></li>
+      <li>Email: <%= @shipment.recipient.email %></li>
+      <li>City: <%= @shipment.recipient.city %></li>
+      <li>Country: <%= @shipment.recipient.country %></li>
+      <li>Address: <%= @shipment.recipient.address %></li>
+    </ul>
+  <% end %>
+<% end %>

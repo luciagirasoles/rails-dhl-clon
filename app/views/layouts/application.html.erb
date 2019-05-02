@@ -7,10 +7,9 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+   <%= render '/partials/nav' %>
   <body>
     <div>
-      <%= render '/partials/nav' %>
     <div class="container pad">
       <% if flash[:alert] %>
         <p class="flash-notice"><%= alert %></p>

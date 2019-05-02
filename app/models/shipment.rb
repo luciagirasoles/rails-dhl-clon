@@ -5,4 +5,8 @@ class Shipment < ApplicationRecord
   validates :tracking_id, uniqueness: true
   validates :weight, :freight_value, numericality: { greater_than: 0 }
 
+  def self.search(search_track)
+    Shipment.find_by(tracking_id: search_track)
+  end
+
 end

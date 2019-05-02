@@ -2,18 +2,11 @@
 <h1>Welcome</h1>
 </div>
 
-<% if current_user %>
-  <%= form_tag(search_path, {:method => "get"}) do %>
-    <%= text_field_tag 'tracking_id' %>
-    <%= submit_tag 'Search' %>
-  <% end %>
-<% else %>
-  <div>
-    <h3>Please access for further options</h3>
-  </div>
-<% end %>
-<%# hi
-<%= form_tag("/api/search", {:method => 'get'}) do %>
+<div>
+  <h3>Please access for further options</h3>
+</div>
+
+<%# <%= form_tag("/api/search", {:method => 'get'}) do %>
     <%# <%= text_field_tag(:search, params[:search]) %>
-    <%# <%= submit_tag('Search', :name => nil) %> %>
-<%# <% end %> %> %> %>
+    <%# <%= submit_tag('Search', :name => nil) %>
+<%# <% end %> 
