@@ -2,8 +2,6 @@ class Deposit::ShipmentController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   
   def index
-    @shipment= Shipment.all
-    redirect_to "/deposit/index"
   end
 
   def show
