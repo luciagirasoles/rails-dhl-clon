@@ -9,5 +9,6 @@ class OrderSendersQuery
     Sender.joins(:shipments)
           .group('senders.id')
           .order('sum(shipments.freight_value) DESC')
+          .having('sum(shipments.freight_value) > 1000')
   end
 end
