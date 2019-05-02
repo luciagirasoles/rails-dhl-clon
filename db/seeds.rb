@@ -31,8 +31,8 @@ User.create(
   role: 'admin'
 )
 
-# Create regular Users 
-15.times do
+# Create Users
+100.times do
   User.create(
     email: Faker::Internet.email,
     username: Faker::Internet.user_name,
@@ -73,28 +73,30 @@ User.create(
 # Creating Sender
 con = 1
 
-20.times do
+60.times do
   Sender.create ([{
   store_name: Faker::Company.name,
   email: Faker::Internet.email,
-  order_id: con
+  order_id: con,
+  city: Faker::Address.city,
+  country: Faker::Address.country
   }])
   con += 1
 end
 
 # Create shipment not delivered
-30.times do
+350.times do
   start_day = Faker::Date.forward(30)
   random_days = rand(30) + 1
   Shipment.create ([{
     tracking_id: Faker::Alphanumeric.unique.alphanumeric(10),
-    origin_address: Faker::Address.full_address, 
-    destination_address: Faker::Address.full_address, 
+    origin_address: Faker::Address.street_address, 
+    destination_address: Faker::Address.street_address, 
     weight: Faker::Number.between(1, 10),
     reception_date: start_day,
     # delivered_date: Faker::Date.forward(60)
     estimated_delivery_date: start_day + random_days,
-    freight_value: Faker::Number.between(20 ,100),
+    freight_value: Faker::Number.between(30 ,200),
     recipient_id: User.ids.sample,
     sender_id: Sender.ids.sample
   }])
@@ -111,7 +113,7 @@ end
 end
 
 # Create Shipment Location
-5.times do 
+98.times do 
   ShipmentLocation.create ([{
     city: Faker::Address.city,
     country: Faker::Address.country,
