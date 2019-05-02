@@ -100,14 +100,13 @@ end
 end
 
 #Delivered random shipments
-10 times do
+10.times do
   random_days = rand(30) + 1
   to_be_delivered= Shipment.pluck(:id).sample
   if Shipment.find(to_be_delivered).reception_date.nil?
     shipment = (Shipment.find(to_be_delivered).reception_date + random_days)
     Shipment.find(id_delivered).update(delivered_date: shipment)
   end
-
 end
 
 # Create Shipment Location
@@ -122,7 +121,7 @@ end
 end
 
 # Create a defined Shipment Location
-|@user = User.create(
+@user = User.create(
   email: 'valevassallo1+annyeong@gmail.com',
   username: 'valevassallo1',
   password: 'aaaaaa',
