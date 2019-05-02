@@ -1,11 +1,11 @@
-class SessionsController < ApiController
+class Api::SessionsController < ApiController
   skip_before_action :require_login, only: :create
 
   def create
-    user = User.valid_login?(params[:email], params[:password])
-    if user
-      user.regenerate_token
-      render json: { token: user.token }
+    user = User.find_by_email(params[:email])
+    if user && user.valid_password?(params[:password])
+      # user.access_token
+      render json: { token: user.authentication_token }
     else
       render_unauthorized('Incorrect email or password')
     end
