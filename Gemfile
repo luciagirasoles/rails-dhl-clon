@@ -43,6 +43,7 @@ group :development, :test do
   gem 'devise'
   gem 'rspec-rails'
   gem 'faker'
+  gem 'simple_token_authentication'
 end
 
 group :development do
@@ -71,3 +72,4 @@ gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'pundit'
 gem 'omniauth-google-oauth2'
+
