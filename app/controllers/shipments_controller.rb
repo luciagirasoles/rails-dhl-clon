@@ -7,7 +7,7 @@ class ShipmentsController < ApplicationController
   end
 
   def search
-    search_track = Shipment.search(params[:search_tracking_id]) 
+    search_track = Shipment.search(search_param[:search_tracking_id])
     if search_track
       @shipment = search_track
       redirect_to shipment_path(@shipment)
