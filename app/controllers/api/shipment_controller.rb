@@ -1,5 +1,5 @@
 module Api
-  class ShipmentController < ApplicationController
+  class ShipmentController < ApiController
     def index
       @shipment = Shipment.all
       render json: @shipment, status: :ok
