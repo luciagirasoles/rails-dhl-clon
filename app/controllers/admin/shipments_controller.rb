@@ -16,7 +16,15 @@ class Admin::ShipmentsController < ApplicationController
     end
   end
 
-  def sales
+  def new
+  
+  end
+
+  def edit
+  end
+
+  def update
+  #update shipment
   end
 
   def top_senders_by_freight_value
