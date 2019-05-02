@@ -7,11 +7,17 @@ Rails.application.routes.draw do
   resources :senders, only: :show
 
   namespace :regular do
-    resource :shipment, only:[:index,:show] do
+    resources :shipments, only: :index do
     get "search", on: :collection
-    get "index", on: :collection
+    get "show", on: :member
     # post "/search" => :search
     end
+  end
+  namespace :admin do
+    resources :shipments do
+      get "sales" => :sales
+    end
+    resources :users, only: :create
   end
 
   namespace :deposit do
@@ -20,13 +26,6 @@ Rails.application.routes.draw do
       get "/show/:tracking_id", to: "shipment#show"
       get "/search", to: 'shipment#search'
       post "/check_in", to: 'shipment#check_in'
-  end
-
-  namespace :admin do
-    resources :shipment do
-      get "/sales" => :sales
-    end
-    resources :users, only: :create
   end
 
   namespace :api,  only:[:index, :show, :update] do

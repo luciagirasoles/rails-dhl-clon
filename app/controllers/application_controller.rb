@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(current_user)
     if current_user.role == 'admin'
-      admin_shipment_index_path
+      admin_shipments_path
     elsif current_user.role == 'deposit'
       deposit_shipment_index_path
     else
-      regular_shipment_path
+      regular_shipments_path
     end
   end
 
