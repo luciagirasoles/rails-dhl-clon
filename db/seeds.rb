@@ -26,6 +26,16 @@ end
   )
 end
 
+@val = User.create(
+  email: 'valevassallo1+annyeong@gmail.com',
+  username: 'valevassallo1',
+  password: 'aaaaaa',
+  country: 'Peru',
+  city: 'Lima',
+  address: 'San Miguel',
+  role: 'regular'
+)
+
 # Creating Sender
 
 5.times do
@@ -53,6 +63,19 @@ end
     sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
   }])
 end
+
+@shipment1 = Shipment.create(
+  tracking_id: 'asdfgh1234',
+  origin_address: 'Los Angeles', 
+  destination_address: 'San Miguel', 
+  weight: 5,
+  reception_date: Faker::Date.forward(60),
+  delivered_date: Faker::Date.forward(60),
+  estimated_delivery_date: Faker::Date.forward(60),
+  freight_value: Faker::Number.between(20 ,100),
+  recipient_id: @val.id,
+  sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
+)
   # Create Shipment Location
 
 5.times do 
@@ -64,4 +87,11 @@ end
   }])
 
 end
+
+@shiplocation = ShipmentLocation.create(
+  city: 'Lima',
+  country: 'Peru',
+  reception_date:Faker::Date.forward(20),
+  shipment_id: @shipment1.id,
+)
 p "Correctly added"
