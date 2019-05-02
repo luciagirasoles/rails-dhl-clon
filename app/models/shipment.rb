@@ -1,5 +1,5 @@
 class Shipment < ApplicationRecord
-  has_many :shipmentlocations, dependent: :destroy
+  has_many :shipmentLocations, dependent: :destroy
   belongs_to :recipient, class_name: 'User'
   belongs_to :sender
   validates :tracking_id, uniqueness: true

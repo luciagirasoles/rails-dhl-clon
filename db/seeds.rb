@@ -64,4 +64,14 @@ end
   }])
 
 end
+
+@diego = User.create(
+  email: 'diegocuevas579+abc@gmail.com',
+  username: 'DiegoCuevas',
+  password: '123456',
+  country: 'Peru',
+  city: 'Lima',
+  address: 'Surquillo',
+  role: 'deposit'
+)
 p "Correctly added"
