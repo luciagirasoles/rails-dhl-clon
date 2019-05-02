@@ -20,13 +20,12 @@ class ApplicationController < ActionController::Base
     if current_user.role == 'admin'
       admin_shipment_index_path
     elsif current_user.role == 'deposit'
-      deposit_shipment_path
+      deposit_shipment_index_path
     else
-      #to be replaced
-      shipment_path
+      regular_shipment_path
     end
   end
-  
+
   # def include_api
   #   if params[:controller].include?("api")
   #     acts_as_token_authentication_handler_for User
