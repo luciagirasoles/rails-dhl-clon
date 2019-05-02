@@ -4,7 +4,6 @@ class Regular::ShipmentsController < ApplicationController
   end
   
   def show
-#    @shipment = Shipment.find(params[:id])
     @shipment = Shipment.find_by!(search_param[:search_tracking_id])
   end
 
@@ -14,7 +13,7 @@ class Regular::ShipmentsController < ApplicationController
       @shipment = search_track
       redirect_to regular_shipment_path(@shipment)
     else
-      redirect_to regular_shipments_path, notice: "Track ID is not found. Please, try again"
+     redirect_to regular_shipments_path, notice: "Track ID is not found. Please, try again"
     end
   end
 

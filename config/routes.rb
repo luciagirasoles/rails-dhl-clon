@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :shipments do
+      get "search", on: :collection
       get "sales" => :sales
     end
     resources :users, only: :create
