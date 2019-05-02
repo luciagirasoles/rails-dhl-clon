@@ -23,8 +23,11 @@ Rails.application.routes.draw do
         get "top-5-countries-recipients" => :top_5_countries_recipients
         get "top-5-countries-senders" => :top_5_countries_senders 
       end
+      patch "update", to: "shipments#update"
     end
-    resources :users, only: :create
+    resources :users, only: [:new, :create, :edit, :update] do
+    get "edit_search" => :edit_search, on: :collection
+    end
   end
 
   namespace :deposit do
