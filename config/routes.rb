@@ -36,9 +36,9 @@ Rails.application.routes.draw do
     get 'search', to: 'shipment#search'
     post 'login', to: 'sessions#create'
 
-    # namespace :deposit do
-    #   get 'search', to: 'shipment#search'
-    # end
+    namespace :deposit do
+      get 'search', to: 'shipment#search'
+    end
   end
   
   resources :error , only: [:index] do

@@ -12,7 +12,7 @@ class Api::Deposit::ShipmentController < ApiController
 
   def search
     if params[:tracking_id]
-      shipment = Shipment.exists?(tracking_id: params[:tracking_id])
+      shipment = Shipment.find_by(tracking_id: params[:tracking_id])
         if shipment
           render json: shipment
         else
