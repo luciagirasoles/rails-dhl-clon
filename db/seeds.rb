@@ -3,7 +3,7 @@ require "faker"
 con = 1
 
 # Create Users
-20.times do
+100.times do
   User.create(
     email: Faker::Internet.email,
     username: Faker::Internet.user_name,
@@ -29,7 +29,7 @@ end
 
 # Creating Sender
 
-5.times do
+60.times do
   Sender.create ([{
   store_name: Faker::Commerce.department,
   email: Faker::Internet.email,
@@ -42,7 +42,7 @@ end
 
 # Create shipment
 
-25.times do
+350.times do
   Shipment.create ([{
     tracking_id: Faker::Alphanumeric.alphanumeric(10),
     origin_address: Faker::Address.street_address, 
@@ -51,14 +51,14 @@ end
     reception_date: Faker::Date.forward(60),
     delivered_date: Faker::Date.forward(60),
     estimated_delivery_date: Faker::Date.forward(60),
-    freight_value: Faker::Number.between(20 ,100),
+    freight_value: Faker::Number.between(30, 200),
     recipient_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
     sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
   }])
 end
   # Create Shipment Location
 
-9.times do 
+98.times do 
   ShipmentLocation.create ([{
     city: Faker::Address.city,
     country: Faker::Address.country,
