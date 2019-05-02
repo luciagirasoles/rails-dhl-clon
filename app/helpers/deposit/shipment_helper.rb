@@ -1,0 +1,2 @@
+module Deposit::ShipmentHelper
+end

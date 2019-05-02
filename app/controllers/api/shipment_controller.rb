@@ -10,8 +10,8 @@ module Api
     end
 
     def search
-      if params[:tracking_number]
-        shipment = Shipment.find_by(tracking_id: params[:tracking_number])
+      if params[:tracking_id]
+        shipment = Shipment.find_by(tracking_id: params[:tracking_id])
           if shipment
             render json: shipment
           else

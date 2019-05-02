@@ -1,0 +1,18 @@
+<p>Tracking number: <%= @shipment.tracking_id %></p>
+<p>Origin address: <%= @shipment.origin_address %></p>
+<p>Destination address: <%= @shipment.destination_address %></p>
+<p>Weight: <%= @shipment.weight %></p>
+<p>Reception date: <%= @shipment.reception_date %></p>
+<p>Estimated delivery date: <%= @shipment.estimated_delivery_date %></p>
+<p>Delivered date: <%= @shipment.delivered_date %></p>
+<p>Freight value: <%= @shipment.freight_value %></p>
+<ul><% @shipment.shipmentLocations.each do |location|%>
+  <li>Received on <%= location.reception_date%> in <%= location.city%>, <%= location.country%></li>
+<% end %>
+</ul>
+
+<br/>
+ <%= form_tag(deposit_check_in_path, {:method => "post"}) do %>
+    <%= hidden_field_tag 'tracking_id', @shipment.tracking_id%>
+    <%= submit_tag 'Check' %>
+  <% end %>
