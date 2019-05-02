@@ -1,14 +1,11 @@
 class ApiController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
+  attr_accessor :current_user
   before_action :require_login
 
   def require_login
     authenticate_token || render_unauthorized('Access denied')
-  end
-
-  def current_user
-    @current_user ||= authenticate_token
   end
 
   private
