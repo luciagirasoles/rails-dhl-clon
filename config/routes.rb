@@ -3,26 +3,30 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root "home#index"
 
-  resources :shipments, only: [:show] do
-  get "search", on: :collection
-    # post "/search" => :search
-  end
   resources :users, only: :show
   resources :senders, only: :show
 
-  namespace :deposit, only: [:index ] do
+  namespace :regular do
+    resources :shipments, only: :index do
+    get "search", on: :collection
+    get "show", on: :member
+    # post "/search" => :search
+    end
+  end
+  namespace :admin do
+    resources :shipments do
+      get "search", on: :collection
+      get "sales" => :sales
+    end
+    resources :users, only: :create
+  end
+
+  namespace :deposit do
     resources :shipment
       get "/index", to: 'shipment#index'
       get "/show/:tracking_id", to: "shipment#show"
       get "/search", to: 'shipment#search'
       post "/check_in", to: 'shipment#check_in'
-  end
-
-  namespace :admin do
-    resources :shipments do
-      get "/sales" => :sales
-    end
-    resources :users, only: :create
   end
 
   namespace :api,  only:[:index, :show, :update] do

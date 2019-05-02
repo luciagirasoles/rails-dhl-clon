@@ -1,7 +1,7 @@
 <p>Tracking number: <%= @shipment.tracking_id %></p>
 <p>Origin address: <%= @shipment.origin_address %></p>
 <p>Destination address: <%= @shipment.destination_address %></p>
-<p>Weight: <%= @shipment.weight %></p>
+<p>Weight: <%= @shipment.weight %>Kg</p>
 <p>Reception date: <%= @shipment.reception_date %></p>
 <p>Estimated delivery date: <%= @shipment.estimated_delivery_date %></p>
 <p>Delivered date: <%= @shipment.delivered_date %></p>
@@ -11,7 +11,7 @@
     <p>Freight value: <%= @shipment.freight_value %></p>
     <p>Sender's order ID: <%= @shipment.sender.order_id %></p>
     <p>Sender's email: <%= @shipment.sender.email %></p>
-    <p>Recipient Info:</p>
+    <p><strong>Recipient Info:</strong></p>
     <ul>
       <li>Username: <%= @shipment.recipient.username %></li>
       <li>Email: <%= @shipment.recipient.email %></li>
@@ -21,3 +21,5 @@
     </ul>
   <% end %>
 <% end %>
+
+<%=link_to '<button type="button">Back</button>'.html_safe, regular_shipments_path %>
