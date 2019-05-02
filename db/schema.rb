@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_05_01_170712) do
     t.bigint "sender_id"
     t.index ["recipient_id"], name: "index_shipments_on_recipient_id"
     t.index ["sender_id"], name: "index_shipments_on_sender_id"
+    t.index ["tracking_id"], name: "index_shipments_on_tracking_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,7 +72,7 @@ ActiveRecord::Schema.define(version: 2019_05_01_170712) do
     t.string "city"
     t.string "country"
     t.string "address"
-    t.string "role"
+    t.string "role", default: "regular"
     t.string "authentication_token", limit: 30
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
