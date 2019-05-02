@@ -27,9 +27,10 @@ Rails.application.routes.draw do
 
   namespace :api,  only:[:index, :show, :update] do
     resources :shipment
-      get 'show' , to: 'shipment#show'
-      get 'index' , to: 'shipment#index'
-      get 'search', to: 'shipment#search'
+    get 'show' , to: 'shipment#show'
+    get 'index' , to: 'shipment#index'
+    get 'search', to: 'shipment#search'
+    post 'login', to: 'sessions#create'
   end
   
   resources :error , only: [:index] do
