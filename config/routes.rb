@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     get 'search', to: 'shipment#search'
     post 'login', to: 'sessions#create'
 
-    namespace :regular do
+    namespace :deposit do
       get 'search', to: 'shipment#search'
     end
   end

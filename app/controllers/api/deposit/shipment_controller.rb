@@ -11,11 +11,15 @@ class Api::Deposit::ShipmentController < ApiController
 
 
   def search
-    if Shipment.exists?(tracking_id: params[:tracking_id])
-      redirect_to deposit_path(params[:tracking_id])
+    if params[:tracking_id]
+      shipment = Shipment.find_by(tracking_id: params[:tracking_id])
+        if shipment
+          render json: shipment
+        else
+          render json: {error: "It doesn't exists a shipment with that tracking id"}, status: 404
+        end
     else
-      flash[:alert] = "Shipment with tracking number #{params[:tracking_id]} not found. Try again"
-      redirect_back(fallback_location: root_path)
+      render json: {error: "You have to pass the argument 'tracking_id'"}, status: 400
     end
   end
 
@@ -25,9 +29,8 @@ class Api::Deposit::ShipmentController < ApiController
     reception_date = DateTime.now
     country = current_user.country
     city = current_user.city
-    ShipmentLocation.create(shipment_id: shipment_id, reception_date: reception_date, country: country, city: city)
-    flash[:notice] = "Shipment checked in"
-    redirect_to deposit_path(params[:tracking_id])
+    @shipment_location = ShipmentLocation.create(shipment_id: shipment_id, reception_date: reception_date, country: country, city: city)
+    render json: @shipment_location
   end
 
 end
