@@ -22,11 +22,7 @@ class ApplicationController < ActionController::Base
     elsif current_user.role == 'deposit'
       deposit_shipment_index_path
     else
-<<<<<<< HEAD
       regular_shipment_path
-=======
-      regular_shipments_path
->>>>>>> d340b849a345f0ed46c22c8cd6fbc4388364352a
     end
   end
 

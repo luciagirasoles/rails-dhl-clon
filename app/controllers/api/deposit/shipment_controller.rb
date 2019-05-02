@@ -1,14 +1,14 @@
-class Deposit::ShipmentController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
-  
+class Api::Deposit::ShipmentController < ApiController
+
   def index
-    @shipment= Shipment.all
-    redirect_to "/deposit/index"
+    @shipment = Shipment.all
+    render json: @shipment, status: :ok
   end
 
   def show
-    @shipment = Shipment.find_by!(tracking_id: params[:tracking_id])
+    render json: Shipment.find(params[:id])
   end
+
 
   def search
     if Shipment.exists?(tracking_id: params[:tracking_id])
@@ -29,8 +29,5 @@ class Deposit::ShipmentController < ApplicationController
     flash[:notice] = "Shipment checked in"
     redirect_to deposit_path(params[:tracking_id])
   end
-  def record_not_found
-    flash[:alert] = "Record not found. Try again"
-    redirect_back(fallback_location: root_path)
-  end
+
 end

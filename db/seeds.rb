@@ -31,6 +31,16 @@ User.create(
   role: 'admin'
 )
 
+User.create(
+  email: 'jona@aa',
+  username: 'dieguin',
+  password: 'aaaaaa',
+  country: 'Peru',
+  city: 'Lima',
+  address: 'Jorge Chavez 184',
+  role: 'admin'
+)
+
 # Create regular Users 
 15.times do
   User.create(

@@ -29,12 +29,18 @@ Rails.application.routes.draw do
       post "/check_in", to: 'shipment#check_in'
   end
 
+  
+
   namespace :api,  only:[:index, :show, :update] do
     resources :shipment
     get 'show' , to: 'shipment#show'
     get 'index' , to: 'shipment#index'
     get 'search', to: 'shipment#search'
     post 'login', to: 'sessions#create'
+
+    namespace :regular do
+      get 'search', to: 'shipment#search'
+    end
   end
   
   resources :error , only: [:index] do

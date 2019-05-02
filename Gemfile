@@ -73,3 +73,5 @@ gem 'omniauth-github'
 gem 'pundit'
 gem 'omniauth-google-oauth2'
 
+
+gem "active_model_serializers", "~> 0.10.9"
