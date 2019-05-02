@@ -1,0 +1,7 @@
+<h1>Top Senders By Packages Sent</h1>
+
+<ul>
+  <% @senders.each do |sender| %>
+    <li><%= sender.store_name %> | Total of packages sent: <% sender.shipments.count('shipments.id') %> </li>
+  <% end %>
+</ul>
