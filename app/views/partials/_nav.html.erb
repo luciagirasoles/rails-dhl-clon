@@ -3,15 +3,26 @@
         <div>
           <%= link_to image_tag("logo_dhl.png", border: 0, size: 50), root_path %>
         </div>
+<<<<<<< HEAD
         <div>
           <%= form_tag(search_regular_shipment_path, {:method => "get"}) do %>
           <%= text_field_tag :search_tracking_id, params[:search_tracking_id], placeholder: "Find by Track Code " %>
           <%= submit_tag 'search', name: nil  %>
           <% end %>
         </div>
+=======
+        <% if current_user&.role == "admin" %>
+          <div>
+            <%= form_tag(search_admin_shipments_path, {:method => "get"}) do %>
+            <%= text_field_tag :search_tracking_id, params[:search_tracking_id], placeholder: "Find by Track Code " %>
+            <%= submit_tag 'search', name: nil  %>
+            <% end %>
+          </div>
+        <% end %>
+>>>>>>> d340b849a345f0ed46c22c8cd6fbc4388364352a
     <ul>
       <% if current_user %>
-        <a href="#">Hi <%= current_user.email.split("@").first %></a>
+        <a href="#">Hi <%= current_user.username %></a>
         <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to 'Sign in', new_user_session_path %>
