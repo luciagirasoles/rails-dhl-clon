@@ -43,8 +43,12 @@ end
 5.times do
   Shipment.create ([{
     tracking_id: Faker::Alphanumeric.alphanumeric(10),
-    origin_address: Faker::Address.full_address, 
-    destination_address: Faker::Address.full_address, 
+    origin_address: Faker::Address.street_address, 
+    origin_city: Faker::Address.city, 
+    origin_country: Faker::Address.country, 
+    destination_address: Faker::Address.street_address, 
+    destination_city: User.all.reduce([]){ |array, val| array << val.city }.sample, 
+    destination_country: User.all.reduce([]){ |array, val| array << val.country }.sample, 
     weight: Faker::Number.between(1, 10),
     reception_date: Faker::Date.forward(60),
     delivered_date: Faker::Date.forward(60),
