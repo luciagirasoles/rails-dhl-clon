@@ -11,21 +11,22 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :country, :city, :address])
   end
 
-  def after_sign_in_path_for(current_user)
-    if current_user.role == "admin"
-      return admin_path
-    elsif current_user.role == "deposit" 
-      return deposit_index_path
-    else
-      return root_path
-    end
-  end
-
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(request.referrer || root_path)
   end
 
+  def after_sign_in_path_for(current_user)
+    if current_user.role == 'admin'
+      admin_shipment_index_path
+    elsif current_user.role == 'deposit'
+      deposit_shipment_path
+    else
+      #to be replaced
+      shipment_path
+    end
+  end
+  
   # def include_api
   #   if params[:controller].include?("api")
   #     acts_as_token_authentication_handler_for User
