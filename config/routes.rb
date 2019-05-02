@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :shipments, only: [:show] do
-    get "/search" => :search
+  get "search", on: :collection
     # post "/search" => :search
   end
   resources :users, only: :show
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api,  only:[:index, :show, :update] do
-    resources 'shipment'
+    resources :shipment
       get 'index' , to: 'shipment#index'
       get 'search', to: 'shipment#search'
   end

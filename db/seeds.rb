@@ -1,8 +1,9 @@
 require "faker"
 
+con = 1
+
 # Create Users
-  con = 1
-10.times do
+5.times do
   User.create(
     email: Faker::Internet.email,
     username: Faker::Internet.user_name,
@@ -12,7 +13,28 @@ require "faker"
     address: Faker::Address.street_address,
     role: 'regular'
   )
-  end
+end
+5.times do
+  User.create(
+    email: Faker::Internet.email,
+    username: Faker::Internet.user_name,
+    password: '123456',
+    country: Faker::Address.country,
+    city: Faker::Address.city,
+    address: Faker::Address.street_address,
+    role: 'deposit'
+  )
+end
+
+@val = User.create(
+  email: 'valevassallo1+annyeong@gmail.com',
+  username: 'valevassallo1',
+  password: 'aaaaaa',
+  country: 'Peru',
+  city: 'Lima',
+  address: 'San Miguel',
+  role: 'regular'
+)
 
 # Creating Sender
 
@@ -20,7 +42,7 @@ require "faker"
   Sender.create ([{
   store_name: Faker::Commerce.department,
   email: Faker::Internet.email,
-  order_id: con 
+  order_id: con
   }])
   con += 1
 end
@@ -40,8 +62,21 @@ end
     recipient_id: User.all.reduce([]){ |array, val| array << val.id }.sample,
     sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
   }])
-  end
-# Create Shipment Location
+end
+
+@shipment1 = Shipment.create(
+  tracking_id: 'asdfgh1234',
+  origin_address: 'Los Angeles', 
+  destination_address: 'San Miguel', 
+  weight: 5,
+  reception_date: Faker::Date.forward(60),
+  delivered_date: Faker::Date.forward(60),
+  estimated_delivery_date: Faker::Date.forward(60),
+  freight_value: Faker::Number.between(20 ,100),
+  recipient_id: @val.id,
+  sender_id: Sender.all.reduce([]){ |array, val| array << val.id }.sample
+)
+  # Create Shipment Location
 
 5.times do 
   ShipmentLocation.create ([{
@@ -52,4 +87,11 @@ end
   }])
 
 end
+
+@shiplocation = ShipmentLocation.create(
+  city: 'Lima',
+  country: 'Peru',
+  reception_date:Faker::Date.forward(20),
+  shipment_id: @shipment1.id,
+)
 p "Correctly added"
