@@ -1,7 +1,7 @@
 <h1>Top 5 Sender Countries </h1>
 
 <ul>
-  <% @senders.each do |sender| %>
-    <li><%= sender.country %> | Most shipments sent: <% sender.shipments.count('senders.country') %> </li>
+  <% @shipments.each do |shipment| %>
+    <li><%= shipment.sender.country %> | Most shipments sent: </li>
   <% end %>
 </ul>
