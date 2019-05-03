@@ -5,16 +5,16 @@ class Shipment < ApplicationRecord
   validates :tracking_id, uniqueness: true
   validates :weight, :freight_value, numericality: { greater_than: 0 }
 
-  after_create :welcome
+  after_create :notification
 
   def self.search(search_track)
     Shipment.find_by(tracking_id: search_track)
   end
 
-  def welcome
+  def notification
     ShipmentMailer.with(
-      user: self
-    ).shipment_welcome.deliver_later
+      user: recipient
+    ).shipment_notification.deliver_later
   end
 
 

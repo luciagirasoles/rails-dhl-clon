@@ -41,6 +41,7 @@ class Admin::ShipmentsController < ApplicationController
 
   def update
   #update shipment
+    # ShipmentMailer.with(user: recipient).shipment_notification.deliver_later
   end
 
   def top_senders_by_freight_value
