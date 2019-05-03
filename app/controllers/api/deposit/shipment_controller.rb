@@ -1,12 +1,8 @@
 class Api::Deposit::ShipmentController < ApiController
 
-  def index
-    @shipment = Shipment.all
-    render json: @shipment, status: :ok
-  end
-
   def show
-    render json: Shipment.find(params[:id])
+    shipment = Shipment.find(params[:tracking_id])
+    render json: shipment
   end
 
 
