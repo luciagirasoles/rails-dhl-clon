@@ -1,5 +1,21 @@
 # Rails DHL Clon
 
+## Documentation
+
+Clone this repo, then run:
+
+```bash
+bundle install
+bin/rails db:setup
+```
+
+To sign in as:
+
+- `admin` : email: vale@aa | password: aaaaaa
+- `deposit` : email: diegocuevas579+abc@gmail.com | password: 123456
+
+For `regular` users, simply sign up.
+
 ## Public website
 
 The app should have a public website without a namespace.
@@ -16,6 +32,7 @@ The app should have a public website without a namespace.
 - After a shipment is marked as completed email the customers registered in the shipment details.
 
 _Private fields to avoid showing in the shipment detail:_
+
 - Sender: order_id, freight_value, email
 - Recipient related information
 
