@@ -1,11 +1,14 @@
-<h1> Create Shipment </h1>
-
-<%= form_for [:admin, @shipment] do |f| %>
+<h2>Update Shipment</h2>
+<%= form_for @shipment,  url: {action: "update"} do |f| %>
   <ul>
     <% @shipment.errors.full_messages.each do |error| %>
       <li><%= error %></li>
     <% end %>
   </ul>
+    <p>
+    <%= f.label :tracking_id %>$<br />
+    <%= f.text_field :tracking_id, readonly: true, disabled: true %>
+  </p>
   <p>
     <%= f.label :origin_address %><br />
     <%= f.text_field :origin_address %>
@@ -15,8 +18,8 @@
     <%= f.text_field :destination_address %>
   </p>
   <p>
-    <%= f.label :weight %> Kg<br />
-    <%= f.text_field :weight %>
+    <%= f.label :weight %> <br />
+    <%= f.text_field :weight %><strong> Kg</strong>
   </p>
   <p>
     <%= f.label :reception_date %><br />
@@ -38,12 +41,8 @@
     <%= f.label :sender_id %><br />
     <%= f.collection_select(:sender_id, Sender.all, :id, :store_name) %>
   </p>
-  <p>
-    <%= f.hidden_field :tracking_id, value: SecureRandom.hex(5) %>
-  </p>
-  <p>
-    <%= f.submit %> <%= f.submit "Clear", :type => "reset" %>
-  </p>
 
+    <%= f.submit data: { confirm: "Are you sure about updating?"}%>
+  </p>
 <% end %>
-<%= link_to '<button type="button">Back</button>'.html_safe, admin_shipments_path %>
+<%= link_to '<button type="button">Back</button>'.html_safe, search_and_edit_admin_shipments_path %>
