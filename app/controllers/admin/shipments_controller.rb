@@ -38,11 +38,11 @@ class Admin::ShipmentsController < ApplicationController
   end
 
   def top_5_countries_senders
-    @senders = OrderCountryQuery.new.top_5_countries_senders
+    @shipments = OrderCountryQuery.new.top_5_countries_senders
   end
 
   def top_5_countries_recipients
-    @users = OrderCountryQuery.new.top_5_countries_recipients
+    @shipments = OrderCountryQuery.new.top_5_countries_recipients
   end
 
   private
