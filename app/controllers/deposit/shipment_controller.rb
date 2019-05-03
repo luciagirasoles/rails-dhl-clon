@@ -5,7 +5,7 @@ class Deposit::ShipmentController < ApplicationController
   end
 
   def show
-    @shipment = Shipment.find_by!(tracking_id: params[:tracking_id])
+    @shipment = Shipment.find(params[:id])
   end
 
   def search
@@ -27,6 +27,7 @@ class Deposit::ShipmentController < ApplicationController
     flash[:notice] = "Shipment checked in"
     redirect_to deposit_path(params[:tracking_id])
   end
+  
   def record_not_found
     flash[:alert] = "Record not found. Try again"
     redirect_back(fallback_location: root_path)

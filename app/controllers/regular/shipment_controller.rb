@@ -1,6 +1,5 @@
-class Regular::ShipmentsController < ApplicationController
+class ShipmentController < ApplicationController
   def index
-
   end
   
   def show
@@ -11,15 +10,15 @@ class Regular::ShipmentsController < ApplicationController
     search_track = Shipment.search(search_param[:search_tracking_id])
     if search_track
       @shipment = search_track
-      redirect_to regular_shipment_path(@shipment)
+      redirect_to shipment_path(@shipment)
     else
-     redirect_to regular_shipments_path, notice: "Track ID is not found. Please, try again"
+      redirect_to "/error", notice: "Track ID is not found. Please, try again"
     end
   end
 
   private
   def search_param
-    params.permit(:search_tracking_id, :utf8, :id)
+    params.permit(:search_tracking_id, :utf8)
   end
 
 end
