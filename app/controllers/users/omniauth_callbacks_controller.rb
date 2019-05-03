@@ -3,7 +3,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user
-      sign_in_and_redirect @user
+      sign_in @user
+      redirect_to users_final_form_path
       set_flash_message(:notice, :success, kind: "Facebook")
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
@@ -14,7 +15,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
     @user = User.from_omniauth(request.env['omniauth.auth'])
     if @user
-      sign_in_and_redirect @user
+      sign_in @user
+      redirect_to users_final_form_path
       set_flash_message(:notice, :success, kind: 'GitHub')
     else
       session['devise.github_data'] = request.env['omniauth.auth']
@@ -25,7 +27,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def google_oauth2
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user
-      sign_in_and_redirect @user
+      sign_in @user
+      redirect_to users_final_form_path
       set_flash_message(:notice, :success, kind: "Google")
     else
       session["devise.google_oauth2_data"] = request.env["omniauth.auth"]
