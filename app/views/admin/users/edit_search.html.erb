@@ -6,10 +6,10 @@
     <%= radio_button_tag(:search_by, "username", checked: true) %>
     <%= label_tag(:search_by, "by username") %>
     <%= radio_button_tag(:search_by, "email") %>
-    <%= label_tag(:search_by, "by email") %><br>
-    <%= text_field_tag :search_parameters, params[:search_parameters], placeholder: "Enter the search terms" %>
-</div>
+    <%= label_tag(:search_by, "by email") %>
+    <br><br/>
+    <%= text_field_tag :search_parameters, params[:search_parameters], placeholder: "Enter the search terms" %> <input type="submit" value="Search">
+<% end %><br>
 <div>
-  <input type="submit" value="Search">
+<%= link_to '<button type="button">Back</button>'.html_safe, admin_shipments_path %>
 </div>
-<% end %>

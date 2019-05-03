@@ -1,4 +1,4 @@
-class SalesPolicy < ApplicationPolicy
+class ShipmentsPolicy < ApplicationPolicy
 
   attr_reader :user, :sales
 
