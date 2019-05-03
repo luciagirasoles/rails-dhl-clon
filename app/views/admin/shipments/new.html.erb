@@ -1,0 +1,49 @@
+<h1> Create Shipment </h1>
+
+<%= form_for [:admin, @shipment] do |f| %>
+  <ul>
+    <% @shipment.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <p>
+    <%= f.label :origin_address %><br />
+    <%= f.text_field :origin_address %>
+  </p>
+  <p>
+    <%= f.label :destination_address %><br />
+    <%= f.text_field :destination_address %>
+  </p>
+  <p>
+    <%= f.label :weight %> Kg<br />
+    <%= f.text_field :weight %>
+  </p>
+  <p>
+    <%= f.label :reception_date %><br />
+    <%= f.date_field :reception_date %>
+  </p>
+  <p>
+    <%= f.label :estimated_delivery_date %><br />
+    <%= f.date_field :estimated_delivery_date %>
+  </p>
+  <p>
+    <%= f.label :freight_value %>$<br />
+    <%= f.text_field :freight_value %>
+  </p>
+  <p>
+    <%= f.label :recipient_id %><br />
+    <%= f.collection_select(:recipient_id, User.all, :id, :email) %>
+  </p>
+  <p>
+    <%= f.label :sender_id %><br />
+    <%= f.collection_select(:sender_id, Sender.all, :id, :store_name) %>
+  </p>
+  <p>
+    <%= f.hidden_field :tracking_id, value: SecureRandom.hex(5) %>
+  </p>
+  <p>
+    <%= f.submit %> <%= f.submit "Clear", :type => "reset" %>
+  </p>
+
+<% end %>
+<%= link_to '<button type="button">Back</button>'.html_safe, admin_shipments_path %>

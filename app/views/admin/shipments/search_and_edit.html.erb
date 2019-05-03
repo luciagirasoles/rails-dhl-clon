@@ -1,0 +1,11 @@
+<h2>Modify Shipment</h2>
+
+Insert Track id for searching the Shipment
+<br><br/>
+
+<%= form_tag(search_shipment_admin_shipments_path, {:method => "get"}) do %>
+    <%= search_field_tag :search_tracking, params[:search_tracking], placeholder: "Insert tracking id" %>
+    <br><br/>
+    <%=button_tag "Search", value:"Search", :name => nil%>
+<% end %> <br><br/>
+<%= link_to '<button type="button">Back</button>'.html_safe, admin_shipments_path %>
