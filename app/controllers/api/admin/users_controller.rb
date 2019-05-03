@@ -5,23 +5,23 @@ class Api::Admin::UsersController < ApiController
   end
 
   def create
-    @user = User.new(user_params)
-    if @users = @user.save
-      render json: @users, notice: "The User was successfully created"
+    @user = User.create(user_params)
+    if @user.save
+      render json: @user, notice: "The User was successfully created"
     else
       render json: {error: "Error create users"}
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by(params[:id])
     render json: @user
   end
   
   def update
-    @user = Users.find(params[:id])
-    if @up = @user.update(role: user_params[:role])
-      render json: @up
+    @user = User.find(params[:id])
+    if  @user.update(role: user_params[:role])
+      render json: @user
     else
       render json: {error: "Error update users"}
     end
@@ -48,7 +48,7 @@ class Api::Admin::UsersController < ApiController
   def user_params
     params.require(:user).permit(:email, :username, :password, :city, :country, :address, :role)
   end
-  # def search_user_param
-  #   params.permit(:search_parameters, :utf8, :search_by)
-  # end
+  def search_user_param
+    params.permit(:search_parameters, :utf8, :search_by)
+  end
 end

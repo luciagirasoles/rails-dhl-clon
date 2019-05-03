@@ -56,6 +56,12 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
       recipient_id: @user2.id,
       sender_id: Sender.all.first.id
     )
+    @shipment_location1 = ShipmentLocation.create(
+      city: Faker::Address.city,
+      country: Faker::Address.country,
+      reception_date: Faker::Date.forward(0),
+      shipment_id: @shipment1.id
+    )
   end
 
   describe 'GET search' do
@@ -64,8 +70,7 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
       get :search
       expect(response).to have_http_status(:unauthorized)
     end
-  
-
+    
     it 'returns http status bad request
       when you pass token but you do not pass parameter tracking_id' do
       request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"

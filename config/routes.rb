@@ -31,7 +31,8 @@ Rails.application.routes.draw do
     resources :users, only: [:new, :create, :edit, :update] do
       collection do
         get "search"
-        put 
+        get "edit_search" => :edit_search
+        post "/search_user", to: "users#search_user"
       end
     end
   end
@@ -45,10 +46,14 @@ Rails.application.routes.draw do
   end
 
   namespace :api,  only:[:index, :show, :update] do
-    resources :shipment
-      get '/search', to: 'shipment#search'
-      post 'login', to: 'sessions#create'
-    
+    post 'login', to: 'sessions#create'
+    get 'search', to: 'shipment#search'
+
+    namespace :deposit do
+      get 'search', to: 'shipment#search'
+      post "/check_in", to: 'shipment#check_in'
+    end
+
     namespace :admin do
       resources :shipment do
         get 'index' , to: 'shipment#index'
@@ -64,17 +69,11 @@ Rails.application.routes.draw do
       end
       resources :users, only: [:new, :create, :edit, :update] do
         collection do
-          get '/search', to: 'users#search'
-          get "edit_search" => :edit_search
+          get "search", to: 'users#search'          
         end
       end
-
-    end    
-
-    namespace :deposit do
-      get 'search', to: 'shipment#search'
-      post "/check_in", to: 'shipment#check_in'
     end
+        
   end
   
   resources :error , only: [:index] do
