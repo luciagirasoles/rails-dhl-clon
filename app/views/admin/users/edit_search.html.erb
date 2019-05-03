@@ -6,7 +6,7 @@
     <%= radio_button_tag(:search_by, "username", checked: true) %>
     <%= label_tag(:search_by, "by username") %>
     <%= radio_button_tag(:search_by, "email") %>
-    <%= label_tag(:search_by, "by email") %><br />
+    <%= label_tag(:search_by, "by email") %><br>
     <%= text_field_tag :search_parameters, params[:search_parameters], placeholder: "Enter the search terms" %>
 </div>
 <div>
