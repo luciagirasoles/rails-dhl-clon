@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+  gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -43,6 +43,7 @@ group :development, :test do
   gem 'devise'
   gem 'rspec-rails'
   gem 'faker'
+  gem 'simple_token_authentication'
 end
 
 group :development do
@@ -69,4 +70,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #Omniauth
 gem 'omniauth-facebook'
 gem 'omniauth-github'
+gem 'pundit'
 gem 'omniauth-google-oauth2'
+

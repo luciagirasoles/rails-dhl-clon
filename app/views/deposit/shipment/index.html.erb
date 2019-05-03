@@ -1,0 +1,12 @@
+<h2>Find shipment with your tracking number </h2>
+<% if current_user %>
+  <%= form_tag(deposit_search_path, {:method => "get"}) do %>
+    <%= text_field_tag 'tracking_id' %>
+    <%= submit_tag 'Search' %>
+  <% end %>
+<% else %>
+  <div>
+    <h3>not found</h3>
+  </div>
+<% end %>
+<br/>
