@@ -36,4 +36,13 @@ class User < ApplicationRecord
     user if user && user.authenticate(password)
   end
 
+  def self.search(field, string_for_search)
+    if field == "username"
+     return User.find_by(username: string_for_search)
+    elsif field == "email"
+     return User.find_by(email: string_for_search)
+    end
+  end
+
+
 end

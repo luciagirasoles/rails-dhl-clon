@@ -19,6 +19,16 @@ class Admin::ShipmentsController < ApplicationController
   def sales
   end
 
+  def new
+  end
+
+  def edit
+  end
+
+  def update
+  #update shipment
+  end
+
   def top_senders_by_freight_value
     @senders = OrderSendersQuery.new.top_senders_total_freight_value
   end
