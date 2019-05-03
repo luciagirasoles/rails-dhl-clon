@@ -1,4 +1,5 @@
 class Api::Regular::ShipmentController < ApiController
+<<<<<<< HEAD
 
   def index
     
@@ -6,6 +7,12 @@ class Api::Regular::ShipmentController < ApiController
   
   def show
     shipment = Shipment.find_by(tracking_id: params[:tracking_number])
+=======
+  
+  def show
+    shipment = Shipment.find_by(tracking_id: params[:tracking_number])
+    render json: shipment
+>>>>>>> a8caadcbd0dbb494de1fc14ba2f5c436182a2d1e
   end
 
   def search

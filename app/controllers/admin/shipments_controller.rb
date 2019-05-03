@@ -17,9 +17,11 @@ class Admin::ShipmentsController < ApplicationController
   end
 
   def sales
+    
   end
 
   def new
+
   end
 
   def edit

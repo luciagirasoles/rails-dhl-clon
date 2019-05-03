@@ -27,6 +27,7 @@ class Deposit::ShipmentController < ApplicationController
     flash[:notice] = "Shipment checked in"
     redirect_to deposit_path(params[:tracking_id])
   end
+  
   def record_not_found
     flash[:alert] = "Record not found. Try again"
     redirect_back(fallback_location: root_path)
