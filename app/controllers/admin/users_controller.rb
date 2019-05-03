@@ -1,6 +1,5 @@
 class Admin::UsersController < ApplicationController
   def new
-    #/admin/users/new(.:format)
     @user = User.new
   end
 
@@ -8,35 +7,42 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       redirect_to admin_shipments_path(@user), notice: "The User was successfully created"
-      # redirect_to admin_artist_path(@artist), notice: "The artist was successfully created"
     else
       render :new
     end
   end
-  
-  def update
+  def edit
+    @user = User.find(params[:id])
   end
   
-  def search 
+  def update
+    @user = User.find(params[:id])
+    if @user.update(role: user_params[:role])
+      redirect_to edit_search_admin_users_path, notice: "The user was successfully updated"
+    else
+      render :edit
+    end
+  end
+
+  def search_user
+    @user=User.search(search_user_param[:search_by],search_user_param[:search_parameters])
+
+    if @user
+      redirect_to edit_admin_user_path(@user.id)
+    else
+      redirect_to edit_search_admin_users_path, notice: "User not found. Please, try again"
+    end  
   end
 
   def edit_search
+  #view exist
   end
 
   private
   def user_params
     params.require(:user).permit(:email, :username, :password, :city, :country, :address, :role)
   end
-
+  def search_user_param
+    params.permit(:search_parameters, :utf8, :search_by)
+  end
 end
-
-# create_table "users", force: :cascade do |t|
-#     t.string "email", default: "", null: false
-#     t.string "encrypted_password", default: "", null: false
-#     t.string "reset_password_token"
-#     t.datetime "reset_password_sent_at"
-#     t.string "username"
-#     t.string "city"
-#     t.string "country"
-#     t.string "address"
-#     t.string "role", default: "regular"

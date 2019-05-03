@@ -28,7 +28,11 @@ Rails.application.routes.draw do
     end
     
     resources :users, only: [:new, :create, :edit, :update] do
-    get "edit_search" => :edit_search, on: :collection
+      collection do
+        get "search"
+        get "edit_search" => :edit_search
+        post "/search_user", to: "users#search_user"
+      end
     end
   end
 
