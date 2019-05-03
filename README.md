@@ -16,6 +16,8 @@ To sign in as:
 
 For `regular` users, simply sign up.
 
+Create `.env` file as shown in the `.env.example`
+
 ## Public website
 
 The app should have a public website without a namespace.
