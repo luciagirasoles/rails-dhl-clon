@@ -43,6 +43,8 @@ Rails.application.routes.draw do
       post "/check_in", to: 'shipment#check_in'
   end
 
+  
+
   namespace :api,  only:[:index, :show, :update] do
     resources :shipment
       get '/search', to: 'shipment#search'

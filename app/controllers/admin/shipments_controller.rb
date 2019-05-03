@@ -3,7 +3,7 @@ class Admin::ShipmentsController < ApplicationController
   end
 
   def show
-    @shipment = Shipment.find_by!(search_param[:search_tracking_id])
+    @shipment = Shipment.find(params[:id])
   end
 
   def search
@@ -16,10 +16,24 @@ class Admin::ShipmentsController < ApplicationController
     end
   end
 
+  def new
+    @shipment = Shipment.new
+  end
+
+  def create
+    @shipment = Shipment.new(shipment_params)
+    if @shipment.save
+      redirect_to admin_shipment_path(@shipment), notice: 'Shipment was successfully created.'
+    else
+      render :new
+    end
+  end
+
   def sales
   end
 
-  def new
+  def search_and_edit
+  
   end
 
   def edit
@@ -46,8 +60,13 @@ class Admin::ShipmentsController < ApplicationController
   end
 
   private
+
   def search_param
-    params.permit(:search_tracking_id, :utf8)
+    params.permit(:search_tracking_id)
+  end
+
+  def shipment_params
+    params.require(:shipment).permit(:tracking_id, :origin_address, :destination_address, :weight, :reception_date, :estimated_delivery_date, :freight_value, :recipient_id, :sender_id)
   end
 
 end

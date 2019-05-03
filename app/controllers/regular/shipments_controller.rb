@@ -4,7 +4,7 @@ class Regular::ShipmentsController < ApplicationController
   end
   
   def show
-    @shipment = Shipment.find_by!(search_param[:search_tracking_id])
+    @shipment = Shipment.find(params[:id])
   end
 
   def search
@@ -19,7 +19,7 @@ class Regular::ShipmentsController < ApplicationController
 
   private
   def search_param
-    params.permit(:search_tracking_id, :utf8)
+    params.permit(:search_tracking_id, :utf8, :id)
   end
 
 end
