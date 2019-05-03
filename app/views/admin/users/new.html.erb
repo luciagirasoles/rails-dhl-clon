@@ -1,0 +1,45 @@
+<h2>New Sale User</h2>
+
+<%= form_for  @user, url: admin_users_path do |f| %>
+<%= render "devise/shared/error_messages", resource: @user %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+    <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <p class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <%= f.hidden_field :role, value: "sales" %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to '<button type="button">Back</button>'.html_safe, admin_shipments_path %>

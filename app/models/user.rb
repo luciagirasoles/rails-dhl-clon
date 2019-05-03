@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   acts_as_token_authenticatable
-  has_secure_token
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -36,5 +35,14 @@ class User < ApplicationRecord
     user = find_by(email: email)
     user if user && user.authenticate(password)
   end
+
+  def self.search(field, string_for_search)
+    if field == "username"
+     return User.find_by(username: string_for_search)
+    elsif field == "email"
+     return User.find_by(email: string_for_search)
+    end
+  end
+
 
 end

@@ -16,6 +16,35 @@ class Admin::ShipmentsController < ApplicationController
     end
   end
 
+  def sales
+  end
+
+  def new
+  end
+
+  def edit
+  end
+
+  def update
+  #update shipment
+  end
+
+  def top_senders_by_freight_value
+    @senders = OrderSendersQuery.new.top_senders_total_freight_value
+  end
+
+  def top_senders_by_packages_sent
+    @senders = OrderSendersQuery.new.top_senders_packages_sent
+  end
+
+  def top_5_countries_senders
+    @shipments = OrderCountryQuery.new.top_5_countries_senders
+  end
+
+  def top_5_countries_recipients
+    @shipments = OrderCountryQuery.new.top_5_countries_recipients
+  end
+
   private
   def search_param
     params.permit(:search_tracking_id, :utf8)

@@ -1,0 +1,15 @@
+<h2>Edit Role User</h2>
+<%# Search field %>
+<div class="field">
+  <p>Please select the type of User search</p>
+    <%= form_tag(search_user_admin_users_path, {:method => "post"}) do %>
+    <%= radio_button_tag(:search_by, "username", checked: true) %>
+    <%= label_tag(:search_by, "by username") %>
+    <%= radio_button_tag(:search_by, "email") %>
+    <%= label_tag(:search_by, "by email") %><br>
+    <%= text_field_tag :search_parameters, params[:search_parameters], placeholder: "Enter the search terms" %>
+</div>
+<div>
+  <input type="submit" value="Search">
+</div>
+<% end %>

@@ -1,0 +1,20 @@
+  <h2>User Info</h2>
+  <%= form_for @user, url: {action: "update"} do |f| %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, value: @user.email, readonly: true , disabled: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :username %><br />
+      <%= f.text_field :username,value: @user.username, readonly: true, disabled: true %>
+    </div>
+
+    <div ><br>
+    <%= f.select :role,[['Regular', 'regular'], ['Deposit', 'deposit'], ['Sales', 'sales'], ['Admin', 'admin']]%>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>
