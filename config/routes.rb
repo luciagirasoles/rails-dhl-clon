@@ -21,8 +21,13 @@ Rails.application.routes.draw do
         get "top-senders-by-packages-sent" => :top_senders_by_packages_sent
         get "top-senders-by-freight-value" => :top_senders_by_freight_value
         get "top-5-countries-recipients" => :top_5_countries_recipients
+<<<<<<< HEAD
         get "top-5-countries-senders" => :top_5_countries_senders 
         get "search_and_edit" => :search_and_edit
+=======
+        get "top-5-countries-senders" => :top_5_countries_senders
+        get "search_shipment"
+>>>>>>> c99cd83393c2321a939257366d181b582bdd4d56
       end
       patch "update", to: "shipments#update"
     end
