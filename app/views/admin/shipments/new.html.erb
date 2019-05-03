@@ -15,7 +15,7 @@
     <%= f.text_field :destination_address %>
   </p>
   <p>
-    <%= f.label :weight %><br />
+    <%= f.label :weight %> Kg<br />
     <%= f.text_field :weight %>
   </p>
   <p>
@@ -27,7 +27,7 @@
     <%= f.date_field :estimated_delivery_date %>
   </p>
   <p>
-    <%= f.label :freight_value %><br />
+    <%= f.label :freight_value %>$<br />
     <%= f.text_field :freight_value %>
   </p>
   <p>
@@ -45,3 +45,4 @@
     <%= f.submit %>
   </p>
 <% end %>
+<%= link_to '<button type="button">Back</button>'.html_safe, admin_shipments_path %>
