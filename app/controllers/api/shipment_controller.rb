@@ -1,13 +1,5 @@
 module Api
   class ShipmentController < ApiController
-    def index
-      @shipment = Shipment.all
-      render json: @shipment, status: :ok
-    end
-
-    def show
-      render json: Shipment.find(params[:id])
-    end
 
     def search
       if params[:tracking_id]
@@ -21,5 +13,6 @@ module Api
         render json: {error: "You have to pass the argument 'tracking_id'"}, status: 400
       end
     end
+    
   end
 end
