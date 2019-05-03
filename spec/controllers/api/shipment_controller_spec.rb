@@ -1,9 +1,8 @@
 require 'rails_helper'
 require 'faker'
 
-RSpec.describe Api::Deposit::ShipmentController, type: :controller do
+RSpec.describe Api::ShipmentController, type: :controller do
 
-   
   before do
     User.delete_all
     Sender.delete_all
@@ -22,7 +21,7 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
       city: Faker::Address.city,
       country: Faker::Address.country,
       address: Faker::Address.street_address,
-      role: "deposit",
+      role: "regular",
     )
     @user2 = User.create(
       username: Faker::Name.unique.name,
@@ -32,7 +31,7 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
       city: Faker::Address.city,
       country: Faker::Address.country,
       address: Faker::Address.street_address,
-      role: "deposit",
+      role: "regular",
     )
     @shipment1 = Shipment.create(
       tracking_id: Faker::Alphanumeric.alphanumeric(10),
@@ -64,7 +63,6 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
       get :search
       expect(response).to have_http_status(:unauthorized)
     end
-  
 
     it 'returns http status bad request
       when you pass token but you do not pass parameter tracking_id' do
@@ -73,11 +71,12 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
       expect(response).to have_http_status(:bad_request)
     end
 
-    it 'returns http status not found
+    it 'render json with a specify error message
       when you pass token and tracking_id but the last one does not exist' do
       request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
       get :search, params: { tracking_id: "asdas78686" }
-      expect(response).to have_http_status(:not_found)
+      expected_response = JSON.parse(response.body)
+      expect(expected_response["error"]).to eq("It doesn't exists a shipment with that tracking id")
     end
 
     it 'returns http status ok' do
@@ -87,13 +86,15 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
     end
 
     it 'render json with general attributes
-        when you pass a tracking_id but it does not belong you' do
+      when you pass a tracking_id but it does not belong you' do
       request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
       get :search, params: { tracking_id: @shipment2.tracking_id }
       expected_response = JSON.parse(response.body)
       expect(expected_response.keys).not_to include("recipient")
     end
 
+
   end
+
 
 end
