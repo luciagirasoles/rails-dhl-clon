@@ -3,7 +3,7 @@ class Admin::ShipmentsController < ApplicationController
   end
 
   def show
-    @shipment = Shipment.find_by!(search_param[:search_tracking_id])
+    @shipment = Shipment.find(params[:id])
   end
 
   def search
@@ -30,6 +30,10 @@ class Admin::ShipmentsController < ApplicationController
   end
 
   def sales
+  end
+
+  def search_and_edit
+  
   end
 
   def edit
