@@ -29,6 +29,12 @@ class Admin::ShipmentsController < ApplicationController
     end
   end
 
+  def destroy
+    @shipment = Shipment.find(params[:id])
+    @shipment.destroy
+    redirect_to search_and_edit_admin_shipments_path, notice: "Track ID deleted correctly."
+  end
+
   def sales
   end
 

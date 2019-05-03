@@ -45,4 +45,6 @@
     <%= f.submit data: { confirm: "Are you sure about updating?"}%>
   </p>
 <% end %>
+
+<%= link_to "<button>Delete</button>".html_safe, admin_shipment_path(@shipment), method: :delete, data: { confirm: "Really delete this Shipment?"} %>
 <%= link_to '<button type="button">Back</button>'.html_safe, search_and_edit_admin_shipments_path %>
