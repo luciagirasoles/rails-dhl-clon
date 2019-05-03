@@ -36,7 +36,7 @@
   </p>
   <p>
     <%= f.label :sender_id %><br />
-    <%= f.text_field :sender_id %>
+    <%= f.collection_select(:sender_id, Sender.all, :id, :store_name) %>
   </p>
   <p>
     <%= f.hidden_field :tracking_id, value: SecureRandom.hex(5) %>
