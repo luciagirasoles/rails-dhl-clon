@@ -15,10 +15,21 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :shipments do
-      get "search", on: :collection
-      get "sales" => :sales
+      collection do
+        get "search"
+        get "sales" => :sales
+        get "top-senders-by-packages-sent" => :top_senders_by_packages_sent
+        get "top-senders-by-freight-value" => :top_senders_by_freight_value
+        get "top-5-countries-recipients" => :top_5_countries_recipients
+        get "top-5-countries-senders" => :top_5_countries_senders 
+      end
+      get "search_and_edit" => :search_and_edit, on: :collection
+      patch "update", to: "shipments#update"
     end
-    resources :users, only: :create
+    
+    resources :users, only: [:new, :create, :edit, :update] do
+    get "edit_search" => :edit_search, on: :collection
+    end
   end
 
   namespace :deposit do

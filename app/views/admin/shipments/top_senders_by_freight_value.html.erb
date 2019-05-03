@@ -1,0 +1,7 @@
+<h1>Top Senders By Freight Value</h1>
+
+<ul>
+  <% @senders.each do |sender| %>
+    <li><%= sender.store_name %> | Total freight value: <% sender.shipments.count('shipments.freight_value') %> </li>
+  <% end %>
+</ul>
