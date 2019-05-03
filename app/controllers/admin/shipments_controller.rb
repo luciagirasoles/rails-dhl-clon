@@ -87,8 +87,9 @@ class Admin::ShipmentsController < ApplicationController
     params.permit(:search_tracking_id, :search_tracking, :utf8)
   end
 
+
   def shipment_params
-    params.require(:shipment).permit(:origin_address, :destination_address, :weight, :reception_date, :estimated_delivery_date, :freight_value, :recipient_id, :sender_id)
+    params.require(:shipment).permit(:tracking_id, :origin_address, :destination_address, :weight, :reception_date, :estimated_delivery_date, :freight_value, :recipient_id, :sender_id)
   end
 
 end
