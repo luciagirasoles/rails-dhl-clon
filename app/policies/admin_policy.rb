@@ -28,15 +28,15 @@ class AdminPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin?
+    user.role?(admin)
   end
 
   def update?
-    user.admin?
+    user.role?(admin)
   end
 
   def destroy?
-    user.admin?
+    user.role?(admin)
   end
 
 end

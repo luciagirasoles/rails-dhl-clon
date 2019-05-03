@@ -9,7 +9,7 @@ class ShipmentsPolicy < ApplicationPolicy
   
 
   def index?
-    user.admin? || user.sales?
+    user.role?(admin) || user.role?(sales)
   end
   
 end
