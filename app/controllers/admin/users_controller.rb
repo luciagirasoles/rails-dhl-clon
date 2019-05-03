@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :authorize_admin
+
   def new
     @user = User.new
   end
@@ -36,6 +38,10 @@ class Admin::UsersController < ApplicationController
 
   def edit_search
   #view exist
+  end
+
+  def authorize_admin
+    authorize User, :new?, policy_class: AdminPolicy
   end
 
   private
