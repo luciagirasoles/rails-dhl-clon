@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     elsif current_user.role == 'deposit'
       deposit_shipment_index_path
     else
-      regular_shipment_path
+      regular_shipments_path
     end
   end
 end
