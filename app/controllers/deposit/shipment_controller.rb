@@ -5,7 +5,7 @@ class Deposit::ShipmentController < ApplicationController
   end
 
   def show
-    @shipment = Shipment.find_by!(tracking_id: params[:tracking_id])
+    @shipment = Shipment.find(tracking_id: params[:tracking_id])
   end
 
   def search
