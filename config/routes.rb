@@ -12,20 +12,17 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :senders, only: :show
 
-<<<<<<< HEAD
   namespace :regular do
     resources :shipments, only: :index do
     get "search", on: :collection
     get "show", on: :member
     end
-=======
   namespace :deposit, only: [:index ] do
     resources :shipment
       get "/index", to: 'shipment#index'
       get "/show/:tracking_id", to: "shipment#show"
       get "/search", to: 'shipment#search'
       post "/check_in", to: 'shipment#check_in'
->>>>>>> 00df3e01231d430191a7e3f61086d788bbbc1c30
   end
 
   namespace :admin do
