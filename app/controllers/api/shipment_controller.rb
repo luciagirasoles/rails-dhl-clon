@@ -1,6 +1,10 @@
 module Api
   class ShipmentController < ApiController
 
+    def show
+      render json: Shipment.find(params[:tracking_id])
+    end
+
     def search
       if params[:tracking_id]
         shipment = Shipment.find_by(tracking_id: params[:tracking_id])
