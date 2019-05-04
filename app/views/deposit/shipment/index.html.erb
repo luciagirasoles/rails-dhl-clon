@@ -1,7 +1,7 @@
 <h2>Find shipment with your tracking number </h2>
 <% if current_user %>
   <%= form_tag(deposit_search_path, {:method => "get"}) do %>
-    <%= text_field_tag 'tracking_id' %>
+    <%= text_field_tag :tracking_id, params[:tracking_id], placeholder: "Find by Track Code " %>    
     <%= submit_tag 'Search' %>
   <% end %>
 <% else %>

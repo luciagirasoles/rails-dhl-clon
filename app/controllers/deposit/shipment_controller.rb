@@ -5,11 +5,12 @@ class Deposit::ShipmentController < ApplicationController
   end
 
   def show
-    @shipment = Shipment.find(params[:id])
+    @shipment = Shipment.find(params[:tracking_id])
   end
 
   def search
-    if Shipment.exists?(tracking_id: params[:tracking_id])
+    
+    if Shipment.exits?(tracking_id: params[:tracking_id])
       redirect_to deposit_path(params[:tracking_id])
     else
       flash[:alert] = "Shipment with tracking number #{params[:tracking_id]} not found. Try again"
