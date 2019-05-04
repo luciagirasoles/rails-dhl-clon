@@ -1,4 +1,15 @@
 class Admin::ShipmentsController < ApplicationController
+
+  # before_action :authorization_admin
+  before_action :authorize_shipment , only: 
+              [:index, :show, :search, :new, 
+                :create, :sales,:destroy, :edit, 
+                :update, :search_and_edit,
+                :search_shipment, :top_senders_by_freight_value,
+              :top_senders_by_packages_sent,
+              :top_5_countries_senders,
+              :top_5_countries_recipients]
+
   def index
   end
 
@@ -38,8 +49,8 @@ class Admin::ShipmentsController < ApplicationController
   def sales
   end
 
-  def search_and_edit
 
+  def search_and_edit
   end
 
   def search_shipment
@@ -92,6 +103,13 @@ class Admin::ShipmentsController < ApplicationController
 
   def shipment_params
     params.require(:shipment).permit(:tracking_id, :origin_address, :destination_address, :weight, :reception_date, :estimated_delivery_date, :freight_value, :recipient_id, :sender_id)
+  end
+
+  # def authorization_admin
+  #   authorize User, :new?, policy_class: Admin::ShipmentPolicy
+  # end
+  def  authorize_shipment
+    authorize [:admin, Shipment]
   end
 
 end
