@@ -6,10 +6,6 @@ class Api::Admin::AdminPolicy
     @current_user = current_user
   end
 
-  def new?
-    current_user && current_user.role?('admin')
-  end
-
   def create?
     current_user && current_user.role?('admin')
   end
@@ -17,16 +13,12 @@ class Api::Admin::AdminPolicy
   def edit?
     current_user && current_user.role?('admin')
   end
-
-  def update?
+  
+  def update
     current_user && current_user.role?('admin')
   end
 
-  def search_user?
-    current_user && current_user.role?('admin')
-  end
-
-  def edit_search_admin_users_path?
+  def search
     current_user && current_user.role?('admin')
   end
 end

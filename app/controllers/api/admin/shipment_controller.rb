@@ -1,5 +1,4 @@
 class Api::Admin::ShipmentController < Apicontroller
-  # before_action :set_shipment, only: [:show, :update, :destroy]
 
   def index
     @shipment = Shipment.all

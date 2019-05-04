@@ -6,13 +6,10 @@ class Api::Deposit::ShipmentPolicy
     @shipment = shipment
   end
 
-  def index?
-    user && user.role?('deposit')
-  end
-
   def show
     user && user.role?('deposit')
   end
+
 
   def search
     user && user.role?('deposit')
@@ -20,9 +17,4 @@ class Api::Deposit::ShipmentPolicy
 
   def check_in
     user && user.role?('deposit')
-  end
-  
-  def record_not_found
-    user && user.role?('deposit')
-  end
 end
