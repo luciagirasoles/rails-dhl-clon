@@ -78,7 +78,7 @@ User.create(
   country: 'Peru',
   city: 'Lima',
   address: 'Surquillo',
-  role: 'deposit'
+  role: 'regular'
 )
 
 User.create(
@@ -167,6 +167,29 @@ end
   recipient_id: @user.id,
   sender_id: Sender.ids.sample
 )
+  # Create Shipment Location
+
+5.times do 
+  ShipmentLocation.create ([{
+    city: Faker::Address.city,
+    country: Faker::Address.country,
+    reception_date:Faker::Date.forward(20),
+    shipment_id: Shipment.all.reduce([]){ |array, val| array << val.id }.sample,
+  }])
+
+end
+
+@diego = User.create(
+  email: 'diegocuevas579+abc@gmail.com',
+  username: 'DiegoCuevas',
+  password: '123456',
+  country: 'Peru',
+  city: 'Lima',
+  address: 'Surquillo',
+  role: 'deposit'
+)
+p "Correctly added"
+
 @shiplocation = ShipmentLocation.create(
   city: 'Lima',
   country: 'Peru',
