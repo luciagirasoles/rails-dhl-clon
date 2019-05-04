@@ -1,7 +1,25 @@
 <h1>Top 5 Countries Recipients</h1>
 
-<ul>
+<% if @shipments%>
+
+  <table style="margin-left: auto; margin-right: auto;">
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Total Sent</th>
+      </tr>
+    </thead>
+  <tbody>
   <% @shipments.each do |shipment| %>
-    <li><%= shipment.recipient.country %> | Most shipments received:</li>
-  <% end %>
-</ul>
+      <tr>
+      <td><%= shipment.country %></td>
+      <td><%= shipment.total %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+<%else%>
+    <p><span style="color: #ff0000;">No data to show</span></p>
+<% end %>
+
+<%= link_to '<button type="button">Back</button>'.html_safe, sales_admin_shipments_path %>
