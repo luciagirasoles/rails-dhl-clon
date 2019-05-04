@@ -5,20 +5,17 @@ class Api::Admin::ShipmentController < ApiController
   end
   
   def show
-    @shipment = Shipment.find_by(tracking_id: params[:tracking_id])
+    @shipment = Shipment.search(params[:tracking_id])
     render json: @shipment
   end
 
   def search
-    if params[:tracking_id]
-      shipment = Shipment.find_by(tracking_id: params[:tracking_id])
-        if shipment
-          render json: shipment
-        else
-          render json: {error: "It doesn't exists a shipment with that tracking id"}, status: 404
-        end
+    @shipment = Shipment.find_by!(tracking_id: params[:tracking_id])
+    p @shipment.class
+    if @shipment
+      render json: @shipment
     else
-      render json: {error: "You have to pass the argument 'tracking_id'"}, status: 400
+      render json: {message: "It doesn't exists a shipment with that tracking id"}
     end
   end
 
@@ -42,4 +39,8 @@ class Api::Admin::ShipmentController < ApiController
     render json: @shipments
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render json: { message: e.message }, status: :not_found
+  end
+   
 end
