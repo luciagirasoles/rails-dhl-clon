@@ -57,9 +57,11 @@ class Admin::ShipmentsController < ApplicationController
   end
 
   def update
-    @shipment = Shipment.find(params[:id])
-    if @shipment.update(shipment_params)
-      redirect_to search_and_edit_admin_shipments_path(@shipment), notice: "The Shipment #{@shipment.tracking_id} was successfully updated"
+    shipment = Shipment.find(params[:id])
+    if shipment.update(shipment_params)
+      ShipmentMailer.with( shipment: shipment).shipment_notification.deliver_now
+      redirect_to search_and_edit_admin_shipments_path(shipment)
+      flash[:notice] = "Shipment was successfuly updated"
     else
       render :edit
     end
