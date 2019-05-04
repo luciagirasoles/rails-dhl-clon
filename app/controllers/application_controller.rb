@@ -25,7 +25,6 @@ class ApplicationController < ActionController::Base
     redirect_to(request.referrer || root_path)
   end
 
-<<<<<<< HEAD
   def after_sign_in_path_for(current_user)
     if current_user.role == 'admin'
       admin_shipments_path
@@ -35,11 +34,4 @@ class ApplicationController < ActionController::Base
       regular_shipments_path
     end
   end
-=======
-  # def include_api
-  #   if params[:controller].include?("api")
-  #     acts_as_token_authentication_handler_for User
-  #   end
-  # end
->>>>>>> 00df3e01231d430191a7e3f61086d788bbbc1c30
 end
