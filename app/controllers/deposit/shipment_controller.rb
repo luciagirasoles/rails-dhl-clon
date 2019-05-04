@@ -1,4 +1,7 @@
 class Deposit::ShipmentController < ApplicationController
+
+  before_action :authorization_deposit
+
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   
   def index
@@ -31,5 +34,9 @@ class Deposit::ShipmentController < ApplicationController
   def record_not_found
     flash[:alert] = "Record not found. Try again"
     redirect_back(fallback_location: root_path)
+  end
+
+  def authorization_deposit
+    authorize User, :new?, policy_class: ShipmentPolicy
   end
 end

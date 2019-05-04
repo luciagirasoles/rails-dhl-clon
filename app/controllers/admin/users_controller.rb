@@ -1,10 +1,13 @@
 class Admin::UsersController < ApplicationController
+  before_action :set_user, only: [:show]
+
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
+    authorize [:admin,  @user]
     if @user.save
       redirect_to admin_shipments_path(@user), notice: "The User was successfully created"
     else
@@ -13,10 +16,12 @@ class Admin::UsersController < ApplicationController
   end
   def edit
     @user = User.find(params[:id])
+    authorize [:admin,  @user]
   end
   
   def update
     @user = User.find(params[:id])
+    authorize [:admin,  @user]
     if @user.update(role: user_params[:role])
       redirect_to edit_search_admin_users_path, notice: "The user was successfully updated"
     else
@@ -35,7 +40,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit_search
-  #view exist
+    #view exist
+  end
+  
+  def authorize_admin
+    authorize User, :new?, policy_class: AdminPolicy
   end
 
   private
@@ -45,4 +54,9 @@ class Admin::UsersController < ApplicationController
   def search_user_param
     params.permit(:search_parameters, :utf8, :search_by)
   end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
 end

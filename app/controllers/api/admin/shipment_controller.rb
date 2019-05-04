@@ -1,4 +1,5 @@
-class Api::Admin::ShipmentController < ApiController
+class Api::Admin::ShipmentController < Apicontroller
+
   def index
     @shipment = Shipment.all
     render json: @shipment, status: :ok
