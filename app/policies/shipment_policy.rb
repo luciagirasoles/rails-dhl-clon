@@ -11,5 +11,9 @@ class ShipmentsPolicy < ApplicationPolicy
   def index?
     user.role?(admin) || user.role?(sales)
   end
+
+  def new?
+    user.role?(admin) || user.role?(sales)
+  end
   
 end

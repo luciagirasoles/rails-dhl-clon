@@ -3,7 +3,6 @@ class Admin::UsersController < ApplicationController
 
   def new
     @user = User.new
-    authorize [:admin,  @user]
   end
 
   def create
@@ -31,7 +30,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def search_user
-    authorize [:admin,  @user]
     @user=User.search(search_user_param[:search_by],search_user_param[:search_parameters])
 
     if @user
@@ -39,11 +37,6 @@ class Admin::UsersController < ApplicationController
     else
       redirect_to edit_search_admin_users_path, notice: "User not found. Please, try again"
     end  
-  end
-
-  def edit_search
-    authorize [:admin,  @user]
-  #view exist
   end
 
   def authorize_admin

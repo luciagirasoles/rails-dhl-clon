@@ -1,6 +1,14 @@
 class Admin::ShipmentsController < ApplicationController
+
+  before_action :authorization_admin,
+                except: [:index, :sales, 
+                  :top_senders_by_freight_value,
+                  :top_senders_by_packages_sent, 
+                  :top_5_countries_senders, 
+                  :top_5_countries_recipients]
+
   def index
-    authorize User, policy_class: Admin::AdminPolicy
+    # authorize User, policy_class: Admin::ShipmentPolicy
   end
 
   def show
@@ -93,6 +101,10 @@ class Admin::ShipmentsController < ApplicationController
 
   def shipment_params
     params.require(:shipment).permit(:tracking_id, :origin_address, :destination_address, :weight, :reception_date, :estimated_delivery_date, :freight_value, :recipient_id, :sender_id)
+  end
+
+  def authorization_admin
+    authorize User, :new?, policy_class: Admin::ShipmentPolicy
   end
 
 end

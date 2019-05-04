@@ -1,7 +1,10 @@
 <p><h4>Welcome <%= current_user.username %></h4></p>
+<% if current_user&.role=='admin' %>
+  
 <h2>Admin Panel</h2>
 <h3>Users</h3>
 <ul>
+
 <li><%= link_to "Create Sale Users",new_admin_user_path %></li>
 <li><%= link_to "Modify User Rol", edit_search_admin_users_path %></li>
 </ul>
@@ -9,5 +12,6 @@
 <ul>
 <li><%= link_to "Create Shipment", new_admin_shipment_path %></li>
 <li><%= link_to "Modify Shipment", search_and_edit_admin_shipments_path %></li>
+<% end %>
 <li><%= link_to"Sales Reports", sales_admin_shipments_path %></li>
 </ul>

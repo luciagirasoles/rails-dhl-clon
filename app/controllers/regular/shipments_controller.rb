@@ -22,4 +22,8 @@ class Regular::ShipmentsController < ApplicationController
     params.permit(:search_tracking_id, :utf8, :id)
   end
 
+  def authorization_regular
+    authorize User, :new?, police_class: ShipmentPolicy
+  end
+
 end
