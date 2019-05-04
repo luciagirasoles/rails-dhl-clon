@@ -8,5 +8,5 @@ class Shipment < ApplicationRecord
   def self.search(search_track)
     Shipment.find_by(tracking_id: search_track)
   end
-
+  
 end
