@@ -9,7 +9,7 @@ class Api::Admin::UsersController < ApiController
     if @user.save
       render json: @user, notice: "The User was successfully created"
     else
-      render json: {error: "Error create users"}, status: :not_found
+      render json: {error: "Error create users"}, status:	:created
     end
   end
 

@@ -80,6 +80,14 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
 
     it 'render json with general attributes
         when you pass a tracking_id but it does not belong you' do
+        request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
+        get :search, params: { tracking_id: @shipment2.tracking_id }
+        expected_response = JSON.parse(response.body)
+        expect(expected_response.keys).not_to include("recipient")
+    end
+    
+    it 'render json with general attributes
+      when you pass a tracking_id but it does not belong you' do
       request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
       get :search, params: { tracking_id: @shipment2.tracking_id }
       expected_response = JSON.parse(response.body)
@@ -87,5 +95,7 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
     end
 
   end
+
+  
 
 end

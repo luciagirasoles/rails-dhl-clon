@@ -7,7 +7,7 @@ class Api::SessionsController < ApiController
       # user.access_token
       render json: { token: user.authentication_token }
     else
-      render json: {errors: 'Incorrect email or password'}
+      render json: {errors: 'Incorrect email or password'}, status: :Unauthorized
     end
   end
 
