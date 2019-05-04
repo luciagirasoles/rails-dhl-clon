@@ -1,5 +1,6 @@
 class Admin::ShipmentsController < ApplicationController
   def index
+    authorize User, policy_class: Admin::AdminPolicy
   end
 
   def show
