@@ -39,6 +39,10 @@ class Admin::UsersController < ApplicationController
     end  
   end
 
+  def edit_search
+    #view exist
+  end
+  
   def authorize_admin
     authorize User, :new?, policy_class: AdminPolicy
   end
