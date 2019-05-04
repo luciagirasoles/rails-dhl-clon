@@ -2,7 +2,7 @@ module Api
   class ShipmentController < ApiController
 
     def show
-      render json: Shipment.find(params[:id])
+      render json: Shipment.find(params[:tracking_id])
     end
 
     def search
