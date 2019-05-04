@@ -65,7 +65,7 @@ Rails.application.routes.draw do
 
     namespace :deposit do
       resources :shipment do
-        get 'search', to: 'shipment#search'
+        get 'search', to: 'shipment#search', on: :collection
         post "/check_in", to: 'shipment#check_in'
       end
     end
@@ -89,8 +89,7 @@ Rails.application.routes.draw do
           get "search", to: 'users#search'          
         end
       end
-    end
-        
+    end        
   end
   
   resources :error , only: [:index] do
