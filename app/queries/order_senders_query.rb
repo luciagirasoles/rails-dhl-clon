@@ -8,4 +8,5 @@ class OrderSendersQuery
     top_sender= Sender.joins(:shipments).group(:email).sum("shipments.freight_value")
    return top_sender.each{|k,v| top_sender.delete(k) if v < 1000}.sort_by {|_key, value| value}.reverse
   end
+
 end
