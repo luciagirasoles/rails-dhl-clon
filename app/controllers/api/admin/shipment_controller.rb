@@ -23,39 +23,25 @@ class Api::Admin::ShipmentController < Apicontroller
       render json: {error: "You have to pass the argument 'tracking_id'"}, status: 400
     end
   end
-  
-  def new
-    shipment = Shipment.new(shipment_params)
-    if shipment.save
-      render json: shipment, status: :created
-    else
-      render json: { errors: shipment.errors}
-    end
-  end
-  
-  def update
-    if @shipment.update(shipment_params)
-      render json: @shipment, status: :ok
-    else
-      render json: { errors: @shipment.errors}
-    end
-  end
-  
-  def destroy
-    @shipment.destroy
-    render json: {},status: :no_content
-  end
-  
-  rescue_from ActiveRecord::RecordNotFound do |e|
-    render json: { message: e.message }, status: :not_found
-  end
-  
-  private    
-  def set_shipment
-    @shipment = Shipment.find(params[:tracking_id])
+
+  def top_senders_by_freight_value
+    @senders = OrderSendersQuery.new.top_senders_total_freight_value
+    render json: @senders
   end
 
-  def shipment_params
-    params.permit(:reception_date, :weight, :destination_address, :origin_address, :tracking_id)
-  end  
+  def top_senders_by_packages_sent
+    @senders = OrderSendersQuery.new.top_senders_packages_sent
+    render json: @senders
+  end
+
+  def top_5_countries_senders
+    @shipments = OrderCountryQuery.new.top_5_countries_senders
+    render json: @shipments
+  end
+
+  def top_5_countries_recipients
+    @shipments = OrderCountryQuery.new.top_5_countries_recipients
+    render json: @shipments
+  end
+
 end

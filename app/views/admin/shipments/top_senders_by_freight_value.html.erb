@@ -1,7 +1,25 @@
-<h1>Top Senders By Freight Value</h1>
+<h2>Top Senders By Freight Value</h2>
 
-<ul>
-  <% @senders.each do |sender| %>
-    <li><%= sender.store_name %> | Total freight value: <% sender.shipments.count('shipments.freight_value') %> </li>
-  <% end %>
-</ul>
+<% if @senders%>
+
+  <table style="margin-left: auto; margin-right: auto;">
+    <thead>
+      <tr>
+        <th>Sender Email</th>
+        <th>Total Freight Value</th>
+      </tr>
+    </thead>
+  <tbody>
+  <% @senders.each do |key, value| %>
+      <tr>
+      <td><%= key.to_s %></td>
+      <td><%= value.to_s %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+<%else%>
+    <p><span style="color: #ff0000;">No data to show</span></p>
+<% end %>
+
+<%= link_to '<button type="button">Back</button>'.html_safe, sales_admin_shipments_path %>
