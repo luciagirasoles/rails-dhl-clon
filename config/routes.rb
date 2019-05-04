@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get "search", on: :collection
     get "show", on: :member
     end
+  end
   namespace :deposit, only: [:index ] do
     resources :shipment
       get "/index", to: 'shipment#index'
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
       get "/search", to: 'shipment#search'
       post "/check_in", to: 'shipment#check_in'
   end
+  
 
   namespace :admin do
     resources :shipments do
@@ -71,7 +73,7 @@ Rails.application.routes.draw do
         get 'index' , to: 'shipment#index'
         get "/show/:tracking_id", to: "shipment#show"
         get '/search', to: 'shipment#search'
-      
+    
         collection do
           get "top-senders-by-packages-sent" => :top_senders_by_packages_sent
           get "top-senders-by-freight-value" => :top_senders_by_freight_value
