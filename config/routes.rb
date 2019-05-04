@@ -73,8 +73,8 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :shipment do
         get 'index' , to: 'shipment#index'
-        get "/show/:tracking_id", to: "shipment#show"
-        get 'search', to: 'shipment#search'
+        get "/show/:tracking_id", to: "shipment#show", on: :collection
+        get 'search', to: 'shipment#search', on: :collection
         
     
         collection do

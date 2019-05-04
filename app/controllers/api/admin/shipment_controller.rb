@@ -11,6 +11,7 @@ class Api::Admin::ShipmentController < ApiController
 
   def search
     @shipment = Shipment.find_by!(tracking_id: params[:tracking_id])
+    p @shipment.class
     if @shipment
       render json: @shipment
     else
