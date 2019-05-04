@@ -30,9 +30,9 @@ class ShipmentSerializer < ActiveModel::Serializer
 
   def recipient
     obj_recipient = Hash.new
-    obj_recipient[:username] = object.recipient.username
-    obj_recipient[:email] = object.recipient.email
-    obj_recipient[:address] = object.recipient.address
+    obj_recipient[:username] = object.user.username
+    obj_recipient[:email] = object.user.email
+    obj_recipient[:address] = object.user.address
     obj_recipient
   end
 

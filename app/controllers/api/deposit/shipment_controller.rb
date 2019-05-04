@@ -10,7 +10,7 @@ class Api::Deposit::ShipmentController < ApiController
     if @shipment = Shipment.find_by(tracking_id: params[:tracking_id])
       render json: @shipment
     else
-      render json: {error: "It doesn't exists a shipment with that tracking id"}, status: :not_found
+      render json: {error: "It doesn't exists a shipment with that tracking id"}
     end
   end
 

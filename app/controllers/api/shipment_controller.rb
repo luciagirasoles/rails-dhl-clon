@@ -11,8 +11,9 @@ module Api
       if @shipment = Shipment.search(params[:tracking_id])
         render json: @shipment
       else
-        render json: {error: "It doesn't exists a shipment with that tracking id"}, status: :not_found
+        render json: {error: "It doesn't exists a shipment with that tracking id"}
       end
     end
+    
   end
 end

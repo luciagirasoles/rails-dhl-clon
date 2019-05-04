@@ -63,12 +63,25 @@ RSpec.describe Api::ShipmentController, type: :controller do
       get :search
       expect(response).to have_http_status(:unauthorized)
     end
+    
+    it 'returns http status bad request
+      when you pass token but you do not pass parameter tracking_id' do
+      request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
+      get :search
+      expect(response).to have_http_status(:bad_request)
+    end
 
     it 'returns http status not found
       when you pass token and tracking_id but the last one does not exist' do
       request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
       get :search, params: { tracking_id: "asdas78686" }
       expect(response).to have_http_status(:not_found)
+    end
+
+    it 'returns http status ok' do
+      request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
+      get :search, params: { tracking_id: @shipment1.tracking_id }
+      expect(response).to have_http_status(:ok)
     end
 
     it 'render json with general attributes

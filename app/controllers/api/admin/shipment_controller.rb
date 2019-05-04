@@ -1,4 +1,4 @@
-class Api::Admin::ShipmentController < ApiController
+class Api::Admin::ShipmentController < Apicontroller
 
   def index
     @shipment = Shipment.all
@@ -7,15 +7,16 @@ class Api::Admin::ShipmentController < ApiController
   
   def show
     @shipment = Shipment.search(params[:tracking_id])
-    render json: @shipment, status: :ok
+    render json: @shipment
   end
 
   def search
     @shipment = Shipment.find_by!(tracking_id: params[:tracking_id])
+    p @shipment.class
     if @shipment
       render json: @shipment
     else
-      render json: {message: "It doesn't exists a shipment with that tracking id"}, status: :not_found
+      render json: {message: "It doesn't exists a shipment with that tracking id"}
     end
   end
 
