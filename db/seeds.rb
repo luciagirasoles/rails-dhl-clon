@@ -78,7 +78,7 @@ User.create(
   country: 'Peru',
   city: 'Lima',
   address: 'Surquillo',
-  role: 'deposit'
+  role: 'regular'
 )
 
 # Creating Sender

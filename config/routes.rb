@@ -16,9 +16,9 @@ Rails.application.routes.draw do
     resources :shipments, only: :index do
     get "search", on: :collection
     get "show", on: :member
-    # post "/search" => :search
     end
   end
+
   namespace :admin do
     resources :shipments do
       collection do
@@ -51,25 +51,35 @@ Rails.application.routes.draw do
       post "/check_in", to: 'shipment#check_in'
   end
 
-  
-
   namespace :api,  only:[:index, :show, :update] do
-    resources :shipment
-    get 'show' , to: 'shipment#show'
-    get 'index' , to: 'shipment#index'
-    get 'search', to: 'shipment#search'
     post 'login', to: 'sessions#create'
-    
-    namespace :admin do
-      get 'index' , to: 'shipment#index'
-      get "/show/:tracking_id", to: "shipment#show"
-      get '/search', to: 'shipment#search'
-    end    
+    get 'search', to: 'shipment#search'
 
     namespace :deposit do
       get 'search', to: 'shipment#search'
       post "/check_in", to: 'shipment#check_in'
     end
+
+    namespace :admin do
+      resources :shipment do
+        get 'index' , to: 'shipment#index'
+        get "/show/:tracking_id", to: "shipment#show"
+        get '/search', to: 'shipment#search'
+      
+        collection do
+          get "top-senders-by-packages-sent" => :top_senders_by_packages_sent
+          get "top-senders-by-freight-value" => :top_senders_by_freight_value
+          get "top-5-countries-recipients" => :top_5_countries_recipients
+          get "top-5-countries-senders" => :top_5_countries_senders
+        end
+      end
+      resources :users, only: [:new, :create, :edit, :update] do
+        collection do
+          get "search", to: 'users#search'          
+        end
+      end
+    end
+        
   end
   
   resources :error , only: [:index] do

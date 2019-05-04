@@ -1,9 +1,8 @@
 require 'rails_helper'
 require 'faker'
 
-RSpec.describe Api::Deposit::ShipmentController, type: :controller do
+RSpec.describe Api::ShipmentController, type: :controller do
 
-   
   before do
     User.delete_all
     Sender.delete_all
@@ -22,7 +21,7 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
       city: Faker::Address.city,
       country: Faker::Address.country,
       address: Faker::Address.street_address,
-      role: "deposit",
+      role: "regular",
     )
     @user2 = User.create(
       username: Faker::Name.unique.name,
@@ -32,7 +31,7 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
       city: Faker::Address.city,
       country: Faker::Address.country,
       address: Faker::Address.street_address,
-      role: "deposit",
+      role: "regular",
     )
     @shipment1 = Shipment.create(
       tracking_id: Faker::Alphanumeric.alphanumeric(10),
@@ -55,12 +54,6 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
       freight_value: Faker::Number.between(20 ,100),
       recipient_id: @user2.id,
       sender_id: Sender.all.first.id
-    )
-    @shipment_location1 = ShipmentLocation.create(
-      city: Faker::Address.city,
-      country: Faker::Address.country,
-      reception_date: Faker::Date.forward(0),
-      shipment_id: @shipment1.id
     )
   end
 
@@ -100,5 +93,6 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
     end
 
   end
+
 
 end
