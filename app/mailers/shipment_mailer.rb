@@ -1,9 +1,10 @@
 class ShipmentMailer < ApplicationMailer
-  default from: 'notifications@myblog.com'
+  default from: 'notifications@dhl-no-reply.com'
 
-  # def shipment_notification
-  #   @shipment = params[:shipment]
-  #   @sender = params[:sender]
-  #   mail(to: @sender.email, subject: 'Shipment is Delivered')
-  # end
-end
+  def shipment_notification
+    @shipment = params[:shipment]
+    @recipient = @shipment.recipient
+    @sender = @shipment.sender
+    mail(to: [@recipient.email, @sender.email], subject: 'Shipment is delivered')
+  end
+end 

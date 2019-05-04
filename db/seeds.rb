@@ -81,6 +81,16 @@ User.create(
   role: 'deposit'
 )
 
+User.create(
+  email: 'christoph.roa+1@gmail.com',
+  username: 'christopher',
+  password: '123456',
+  country: 'Peru',
+  city: 'Lima',
+  address: 'SanJuanCIty',
+  role: 'admin'
+)
+
 # Creating Sender
 con = 1
 
