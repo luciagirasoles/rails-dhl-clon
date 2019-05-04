@@ -81,7 +81,11 @@ RSpec.describe Api::Admin::ShipmentController, type: :controller do
       expect(shipments.size).to eq(2)
     end
 
-
+    it 'returns http status ok' do
+      request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
+      get :index
+      expect(response).to have_http_status(:ok)
+    end
   end
 
   describe 'GET show' do
@@ -90,6 +94,19 @@ RSpec.describe Api::Admin::ShipmentController, type: :controller do
       get :show, params: { tracking_id: @shipment1.tracking_id }
       expect(response).to have_http_status(:unauthorized)
     end
+
+    it 'returns specific shipment' do
+      request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
+      get :show, params: { tracking_id: @shipment1.tracking_id }
+      expected_response = JSON.parse(response.body)
+      expect(expected_response.keys).to include("reception_date")
+    end
+
+    it 'returns http status ok' do
+      request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
+      get :show, params: { tracking_id: @shipment1.tracking_id }
+      expect(response).to have_http_status(:ok)
+    end
   end
 
   describe 'GET search' do
@@ -97,6 +114,35 @@ RSpec.describe Api::Admin::ShipmentController, type: :controller do
       when you do not pass the token in header' do
       get :search, params: { tracking_id: @shipment1.tracking_id }
       expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'returns http status ok' do
+      request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
+      get :search, params: { tracking_id: @shipment1.tracking_id }
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'returns specific shipment' do
+      request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
+      get :search, params: { tracking_id: @shipment1.tracking_id }
+      expected_response = JSON.parse(response.body)
+      expect(expected_response.keys).to include("origin_address")
+    end
+
+    it 'returns specified shipment with general and private attributes 
+        when it belongs you' do
+      request.headers['Authorization'] = "Token token=#{@user2.authentication_token}"
+      get :search, params: { tracking_id: @shipment2.tracking_id }
+      expected_response = JSON.parse(response.body)
+      expect(expected_response.keys).to include("recipient")
+    end
+
+    it 'returns specified shipment with general and private attributes 
+        when it does not belong you' do
+      request.headers['Authorization'] = "Token token=#{@user1.authentication_token}"
+      get :search, params: { tracking_id: @shipment2.tracking_id }
+      expected_response = JSON.parse(response.body)
+      expect(expected_response.keys).not_to include("recipient")
     end
   end
 

@@ -85,7 +85,6 @@ RSpec.describe Api::Deposit::ShipmentController, type: :controller do
       expected_response = JSON.parse(response.body)
       expect(expected_response.keys).not_to include("recipient")
     end
-
   end
 
 end
