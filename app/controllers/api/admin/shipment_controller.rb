@@ -1,4 +1,4 @@
-class Api::Admin::ShipmentController < Apicontroller
+class Api::Admin::ShipmentController < ApiController
 
   def index
     @shipment = Shipment.all
